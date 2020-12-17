@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<decorators defaultdir="/layout">
+    <decorator name="main" page="main.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+    <decorator name="blog" page="blog.jsp">
+        <pattern>/board/*</pattern>
+    </decorator>
+    <!-- sitemesh의 설정 제외 항목 -->
+    <excludes>
+        <pattern>redirect.jsp</pattern>
+    </excludes>
+</decorators>
