@@ -7,12 +7,16 @@
     <title>SIMPLOG</title>
 </head>
 <body>
-<h1>Main</h1>
+
+<h1>Search</h1>
 <div id="main_search_bar"></div> <!-- ajax로 검색 바 삽입 -->
 <div>
 
 </div>
 
-<script src="js/index.js"></script>
+<!-- script -->
+<script>
+
+</script>
 </body>
 </html>
