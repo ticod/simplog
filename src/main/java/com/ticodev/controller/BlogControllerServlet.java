@@ -24,7 +24,7 @@ import java.util.Properties;
         })
 public class BlogControllerServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
     private Map<String, Action> commandMap = new HashMap<>();
 
     public BlogControllerServlet() {
@@ -76,7 +76,7 @@ public class BlogControllerServlet extends HttpServlet {
 
         request.setCharacterEncoding("utf-8");
         String blogName = null;
-        String uri = null;
+        String url = null;
 
         Action action = null;
         ActionForward forward = null;
@@ -84,11 +84,10 @@ public class BlogControllerServlet extends HttpServlet {
 
         try {
             command = request.getRequestURI().substring(request.getContextPath().length());
-            String[] commandUriSplit = command.split("/");
-            blogName = commandUriSplit[1];
-            uri = "/" + commandUriSplit[2];
+            blogName = command.substring(1, command.substring(1).indexOf('/') + 1);
+            url = command.substring(command.substring(1).indexOf('/') + 1);
 
-            action = commandMap.get(uri);
+            action = commandMap.get(url);
             forward = action.execute(request, response);
         } catch (NullPointerException e) {
             forward = new ActionForward();
@@ -103,9 +102,8 @@ public class BlogControllerServlet extends HttpServlet {
             response.sendRedirect(forward.getView());
         } else {
             if (forward.getView() == null) {
-                forward.setView(uri.replace(".blog", ".jsp"));
+                forward.setView(url.replace(".blog", ".jsp"));
             }
-            request.setAttribute("blog", blogName);
             RequestDispatcher dip = request.getRequestDispatcher(forward.getView());
             dip.forward(request, response);
         }
