@@ -75,16 +75,14 @@ public class BlogControllerServlet extends HttpServlet {
             throws ServletException, IOException {
 
         request.setCharacterEncoding("utf-8");
-        String blogName = null;
         String url = null;
 
-        Action action = null;
-        ActionForward forward = null;
-        String command = null;
+        Action action;
+        ActionForward forward;
+        String command;
 
         try {
             command = request.getRequestURI().substring(request.getContextPath().length());
-            blogName = command.substring(1, command.substring(1).indexOf('/') + 1);
             url = command.substring(command.substring(1).indexOf('/') + 1);
 
             action = commandMap.get(url);
