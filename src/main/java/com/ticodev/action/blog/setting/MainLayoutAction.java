@@ -7,11 +7,11 @@ import com.ticodev.action.blog.BlogUrlProcessor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class MainLayoutAction implements Action, BlogUrlProcessor {
+public class MainLayoutAction implements Action {
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        processURI(request);
-        return getActionForward(request);
+        BlogUrlProcessor.processURI(request);
+        return BlogUrlProcessor.getActionForward(request);
     }
 }

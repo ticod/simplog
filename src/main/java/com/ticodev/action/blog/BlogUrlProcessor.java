@@ -4,9 +4,9 @@ import com.ticodev.action.ActionForward;
 
 import javax.servlet.http.HttpServletRequest;
 
-public interface BlogUrlProcessor {
+public class BlogUrlProcessor {
 
-    default void processURI(HttpServletRequest request) {
+    public static void processURI(HttpServletRequest request) {
 
         String uri = request.getRequestURI().substring(request.getContextPath().length());
         int splitIndex = uri.substring(1).indexOf('/') + 1;
@@ -17,7 +17,7 @@ public interface BlogUrlProcessor {
 
     }
 
-    default ActionForward getActionForward(HttpServletRequest request) {
+    public static ActionForward getActionForward(HttpServletRequest request) {
 
         String url = (String) request.getAttribute("url");
         return new ActionForward(false, "/blog" + url.replace(".blog", ".jsp"));
