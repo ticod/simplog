@@ -4,29 +4,29 @@ import java.util.Date;
 
 public class MemberRecommend {
 
-    private int memberNum;
+    private int mbNum;
     private int contentType;
     private int contentNum;
-    private Date datetime;
-    private boolean isCancel;
+    private Date mrDatetime;
+    private boolean mrIsCancel;
 
     @Override
     public String toString() {
         return "MemberRecommend{" +
-                "memberNum=" + memberNum +
+                "mbNum=" + mbNum +
                 ", contentType=" + contentType +
                 ", contentNum=" + contentNum +
-                ", datetime=" + datetime +
-                ", isCancel=" + isCancel +
+                ", mrDatetime=" + mrDatetime +
+                ", mrIsCancel=" + mrIsCancel +
                 '}';
     }
 
-    public int getMemberNum() {
-        return memberNum;
+    public int getMbNum() {
+        return mbNum;
     }
 
-    public void setMemberNum(int memberNum) {
-        this.memberNum = memberNum;
+    public void setMbNum(int mbNum) {
+        this.mbNum = mbNum;
     }
 
     public int getContentType() {
@@ -45,19 +45,19 @@ public class MemberRecommend {
         this.contentNum = contentNum;
     }
 
-    public Date getDatetime() {
-        return datetime;
+    public Date getMrDatetime() {
+        return mrDatetime;
     }
 
-    public void setDatetime(Date datetime) {
-        this.datetime = datetime;
+    public void setMrDatetime(Date mrDatetime) {
+        this.mrDatetime = mrDatetime;
     }
 
-    public boolean isCancel() {
-        return isCancel;
+    public boolean isMrIsCancel() {
+        return mrIsCancel;
     }
 
-    public void setCancel(boolean cancel) {
-        isCancel = cancel;
+    public void setMrIsCancel(boolean mrIsCancel) {
+        this.mrIsCancel = mrIsCancel;
     }
 }

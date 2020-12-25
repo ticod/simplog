@@ -4,140 +4,140 @@ import java.util.Date;
 
 public class Blog {
 
-    private int num;
-    private int memberNum;
-    private int type;
-    private String name;
-    private String url;
-    private String profileImage;
-    private String logo;
-    private String intro;
-    private Date created;
-    private int layout;
-    private int mainLayout;
-    private String mainImage;
-    private String mainIntro;
+    private int bgNum;
+    private int mbNum;
+    private int bgType;
+    private String bgName;
+    private String bgUrl;
+    private String bgProfileImage;
+    private String bgLogo;
+    private String bgIntro;
+    private int bgLayout;
+    private int bgMainLayout;
+    private Date bgCreatedDatetime;
+    private String bgMainImage;
+    private String bgMainIntro;
 
     @Override
     public String toString() {
         return "Blog{" +
-                "num=" + num +
-                ", memberNum=" + memberNum +
-                ", type=" + type +
-                ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
-                ", profileImage='" + profileImage + '\'' +
-                ", logo='" + logo + '\'' +
-                ", intro='" + intro + '\'' +
-                ", layout=" + layout +
-                ", mainLayout=" + mainLayout +
-                ", created=" + created +
-                ", mainImage='" + mainImage + '\'' +
-                ", mainIntro='" + mainIntro + '\'' +
+                "bgNum=" + bgNum +
+                ", mbNum=" + mbNum +
+                ", bgType=" + bgType +
+                ", bgName='" + bgName + '\'' +
+                ", bgUrl='" + bgUrl + '\'' +
+                ", bgProfileImage='" + bgProfileImage + '\'' +
+                ", bgLogo='" + bgLogo + '\'' +
+                ", bgIntro='" + bgIntro + '\'' +
+                ", bgLayout=" + bgLayout +
+                ", bgMainLayout=" + bgMainLayout +
+                ", bgCreatedDatetime=" + bgCreatedDatetime +
+                ", bgMainImage='" + bgMainImage + '\'' +
+                ", bgMainIntro='" + bgMainIntro + '\'' +
                 '}';
     }
 
-    public int getNum() {
-        return num;
+    public int getBgNum() {
+        return bgNum;
     }
 
-    public void setNum(int num) {
-        this.num = num;
+    public void setBgNum(int bgNum) {
+        this.bgNum = bgNum;
     }
 
-    public int getMemberNum() {
-        return memberNum;
+    public int getMbNum() {
+        return mbNum;
     }
 
-    public void setMemberNum(int memberNum) {
-        this.memberNum = memberNum;
+    public void setMbNum(int mbNum) {
+        this.mbNum = mbNum;
     }
 
-    public int getType() {
-        return type;
+    public int getBgType() {
+        return bgType;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setBgType(int bgType) {
+        this.bgType = bgType;
     }
 
-    public String getName() {
-        return name;
+    public String getBgName() {
+        return bgName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBgName(String bgName) {
+        this.bgName = bgName;
     }
 
-    public String getUrl() {
-        return url;
+    public String getBgUrl() {
+        return bgUrl;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setBgUrl(String bgUrl) {
+        this.bgUrl = bgUrl;
     }
 
-    public String getProfileImage() {
-        return profileImage;
+    public String getBgProfileImage() {
+        return bgProfileImage;
     }
 
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
+    public void setBgProfileImage(String bgProfileImage) {
+        this.bgProfileImage = bgProfileImage;
     }
 
-    public String getLogo() {
-        return logo;
+    public String getBgLogo() {
+        return bgLogo;
     }
 
-    public void setLogo(String logo) {
-        this.logo = logo;
+    public void setBgLogo(String bgLogo) {
+        this.bgLogo = bgLogo;
     }
 
-    public String getIntro() {
-        return intro;
+    public String getBgIntro() {
+        return bgIntro;
     }
 
-    public void setIntro(String intro) {
-        this.intro = intro;
+    public void setBgIntro(String bgIntro) {
+        this.bgIntro = bgIntro;
     }
 
-    public int getLayout() {
-        return layout;
+    public int getBgLayout() {
+        return bgLayout;
     }
 
-    public void setLayout(int layout) {
-        this.layout = layout;
+    public void setBgLayout(int bgLayout) {
+        this.bgLayout = bgLayout;
     }
 
-    public int getMainLayout() {
-        return mainLayout;
+    public int getBgMainLayout() {
+        return bgMainLayout;
     }
 
-    public void setMainLayout(int mainLayout) {
-        this.mainLayout = mainLayout;
+    public void setBgMainLayout(int bgMainLayout) {
+        this.bgMainLayout = bgMainLayout;
     }
 
-    public Date getCreated() {
-        return created;
+    public Date getBgCreatedDatetime() {
+        return bgCreatedDatetime;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
+    public void setBgCreatedDatetime(Date bgCreatedDatetime) {
+        this.bgCreatedDatetime = bgCreatedDatetime;
     }
 
-    public String getMainImage() {
-        return mainImage;
+    public String getBgMainImage() {
+        return bgMainImage;
     }
 
-    public void setMainImage(String mainImage) {
-        this.mainImage = mainImage;
+    public void setBgMainImage(String bgMainImage) {
+        this.bgMainImage = bgMainImage;
     }
 
-    public String getMainIntro() {
-        return mainIntro;
+    public String getBgMainIntro() {
+        return bgMainIntro;
     }
 
-    public void setMainIntro(String mainIntro) {
-        this.mainIntro = mainIntro;
+    public void setBgMainIntro(String bgMainIntro) {
+        this.bgMainIntro = bgMainIntro;
     }
 }

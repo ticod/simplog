@@ -2,60 +2,60 @@ package com.ticodev.model.dto;
 
 public class BlogCategorySetting {
 
-    private int num;
-    private int blogNum;
-    private int sequence;
-    private int parent;
-    private String name;
+    private int ctNum;
+    private int bgNum;
+    private int ctSequence;
+    private int ctParent;
+    private String ctName;
 
     @Override
     public String toString() {
         return "BlogCategorySetting{" +
-                "num=" + num +
-                ", blogNum=" + blogNum +
-                ", sequence=" + sequence +
-                ", parent=" + parent +
-                ", name='" + name + '\'' +
+                "ctNum=" + ctNum +
+                ", bgNum=" + bgNum +
+                ", ctSequence=" + ctSequence +
+                ", ctParent=" + ctParent +
+                ", ctName='" + ctName + '\'' +
                 '}';
     }
 
-    public int getNum() {
-        return num;
+    public int getCtNum() {
+        return ctNum;
     }
 
-    public void setNum(int num) {
-        this.num = num;
+    public void setCtNum(int ctNum) {
+        this.ctNum = ctNum;
     }
 
-    public int getBlogNum() {
-        return blogNum;
+    public int getBgNum() {
+        return bgNum;
     }
 
-    public void setBlogNum(int blogNum) {
-        this.blogNum = blogNum;
+    public void setBgNum(int bgNum) {
+        this.bgNum = bgNum;
     }
 
-    public int getSequence() {
-        return sequence;
+    public int getCtSequence() {
+        return ctSequence;
     }
 
-    public void setSequence(int sequence) {
-        this.sequence = sequence;
+    public void setCtSequence(int ctSequence) {
+        this.ctSequence = ctSequence;
     }
 
-    public int getParent() {
-        return parent;
+    public int getCtParent() {
+        return ctParent;
     }
 
-    public void setParent(int parent) {
-        this.parent = parent;
+    public void setCtParent(int ctParent) {
+        this.ctParent = ctParent;
     }
 
-    public String getName() {
-        return name;
+    public String getCtName() {
+        return ctName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCtName(String ctName) {
+        this.ctName = ctName;
     }
 }

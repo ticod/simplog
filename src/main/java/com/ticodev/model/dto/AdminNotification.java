@@ -4,77 +4,77 @@ import java.util.Date;
 
 public class AdminNotification {
 
-    private int num;
-    private int memberNum;
-    private int type;
-    private int subject;
-    private int content;
-    private Date datetime;
+    private int anNum;
+    private int mbNum;
+    private int anType;
+    private int anSubject;
+    private int anContent;
+    private Date anDatetime;
     private int contentType;
     private int contentNum;
-    private boolean isProcessed;
+    private boolean anIsProcessed;
 
     @Override
     public String toString() {
         return "AdminNotification{" +
-                "num=" + num +
-                ", memberNum=" + memberNum +
-                ", type=" + type +
-                ", subject=" + subject +
-                ", content=" + content +
-                ", datetime=" + datetime +
+                "anNum=" + anNum +
+                ", mbNum=" + mbNum +
+                ", anType=" + anType +
+                ", anSubject=" + anSubject +
+                ", anContent=" + anContent +
+                ", anDatetime=" + anDatetime +
                 ", contentType=" + contentType +
                 ", contentNum=" + contentNum +
-                ", isProcessed=" + isProcessed +
+                ", anIsProcessed=" + anIsProcessed +
                 '}';
     }
 
-    public int getNum() {
-        return num;
+    public int getAnNum() {
+        return anNum;
     }
 
-    public void setNum(int num) {
-        this.num = num;
+    public void setAnNum(int anNum) {
+        this.anNum = anNum;
     }
 
-    public int getMemberNum() {
-        return memberNum;
+    public int getMbNum() {
+        return mbNum;
     }
 
-    public void setMemberNum(int memberNum) {
-        this.memberNum = memberNum;
+    public void setMbNum(int mbNum) {
+        this.mbNum = mbNum;
     }
 
-    public int getType() {
-        return type;
+    public int getAnType() {
+        return anType;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setAnType(int anType) {
+        this.anType = anType;
     }
 
-    public int getSubject() {
-        return subject;
+    public int getAnSubject() {
+        return anSubject;
     }
 
-    public void setSubject(int subject) {
-        this.subject = subject;
+    public void setAnSubject(int anSubject) {
+        this.anSubject = anSubject;
     }
 
-    public int getContent() {
-        return content;
+    public int getAnContent() {
+        return anContent;
     }
 
-    public void setContent(int content) {
-        this.content = content;
+    public void setAnContent(int anContent) {
+        this.anContent = anContent;
     }
 
-    public Date getDatetime() {
-        return datetime;
+    public Date getAnDatetime() {
+        return anDatetime;
     }
 
-    public void setDatetime(Date datetime) {
-        this.datetime = datetime;
+    public void setAnDatetime(Date anDatetime) {
+        this.anDatetime = anDatetime;
     }
 
     public int getContentType() {
@@ -93,11 +93,11 @@ public class AdminNotification {
         this.contentNum = contentNum;
     }
 
-    public boolean isProcessed() {
-        return isProcessed;
+    public boolean isAnIsProcessed() {
+        return anIsProcessed;
     }
 
-    public void setProcessed(boolean processed) {
-        isProcessed = processed;
+    public void setAnIsProcessed(boolean anIsProcessed) {
+        this.anIsProcessed = anIsProcessed;
     }
 }

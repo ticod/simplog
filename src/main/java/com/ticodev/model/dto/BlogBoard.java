@@ -4,110 +4,110 @@ import java.util.Date;
 
 public class BlogBoard {
 
-    private int num;
-    private int blogNum;
-    private int commentNum;
-    private String subject;
-    private String content;
-    private String file;
-    private Date created;
-    private Date lastModified;
-    private int hits;
-    private int isDelete;
+    private int bbNum;
+    private int bgNum;
+    private int ctNum;
+    private String bbSubject;
+    private String bbContent;
+    private String bbFile;
+    private Date bbCreatedDatetime;
+    private Date bbLastModifiedDatetime;
+    private int bbHits;
+    private int bbIsDelete;
 
     @Override
     public String toString() {
         return "BlogBoard{" +
-                "num=" + num +
-                ", blogNum=" + blogNum +
-                ", commentNum=" + commentNum +
-                ", subject='" + subject + '\'' +
-                ", content='" + content + '\'' +
-                ", file='" + file + '\'' +
-                ", created=" + created +
-                ", lastModified=" + lastModified +
-                ", hits=" + hits +
-                ", isDelete=" + isDelete +
+                "bbNum=" + bbNum +
+                ", bgNum=" + bgNum +
+                ", ctNum=" + ctNum +
+                ", bbSubject='" + bbSubject + '\'' +
+                ", bbContent='" + bbContent + '\'' +
+                ", bbFile='" + bbFile + '\'' +
+                ", bbCreatedDatetime=" + bbCreatedDatetime +
+                ", bbLastModifiedDatetime=" + bbLastModifiedDatetime +
+                ", bbHits=" + bbHits +
+                ", bbIsDelete=" + bbIsDelete +
                 '}';
     }
 
-    public int getNum() {
-        return num;
+    public int getBbNum() {
+        return bbNum;
     }
 
-    public void setNum(int num) {
-        this.num = num;
+    public void setBbNum(int bbNum) {
+        this.bbNum = bbNum;
     }
 
-    public int getBlogNum() {
-        return blogNum;
+    public int getBgNum() {
+        return bgNum;
     }
 
-    public void setBlogNum(int blogNum) {
-        this.blogNum = blogNum;
+    public void setBgNum(int bgNum) {
+        this.bgNum = bgNum;
     }
 
-    public int getCommentNum() {
-        return commentNum;
+    public int getCtNum() {
+        return ctNum;
     }
 
-    public void setCommentNum(int commentNum) {
-        this.commentNum = commentNum;
+    public void setCtNum(int ctNum) {
+        this.ctNum = ctNum;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getBbSubject() {
+        return bbSubject;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setBbSubject(String bbSubject) {
+        this.bbSubject = bbSubject;
     }
 
-    public String getContent() {
-        return content;
+    public String getBbContent() {
+        return bbContent;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setBbContent(String bbContent) {
+        this.bbContent = bbContent;
     }
 
-    public String getFile() {
-        return file;
+    public String getBbFile() {
+        return bbFile;
     }
 
-    public void setFile(String file) {
-        this.file = file;
+    public void setBbFile(String bbFile) {
+        this.bbFile = bbFile;
     }
 
-    public Date getCreated() {
-        return created;
+    public Date getBbCreatedDatetime() {
+        return bbCreatedDatetime;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
+    public void setBbCreatedDatetime(Date bbCreatedDatetime) {
+        this.bbCreatedDatetime = bbCreatedDatetime;
     }
 
-    public Date getLastModified() {
-        return lastModified;
+    public Date getBbLastModifiedDatetime() {
+        return bbLastModifiedDatetime;
     }
 
-    public void setLastModified(Date lastModified) {
-        this.lastModified = lastModified;
+    public void setBbLastModifiedDatetime(Date bbLastModifiedDatetime) {
+        this.bbLastModifiedDatetime = bbLastModifiedDatetime;
     }
 
-    public int getHits() {
-        return hits;
+    public int getBbHits() {
+        return bbHits;
     }
 
-    public void setHits(int hits) {
-        this.hits = hits;
+    public void setBbHits(int bbHits) {
+        this.bbHits = bbHits;
     }
 
-    public int getIsDelete() {
-        return isDelete;
+    public int getBbIsDelete() {
+        return bbIsDelete;
     }
 
-    public void setIsDelete(int isDelete) {
-        this.isDelete = isDelete;
+    public void setBbIsDelete(int bbIsDelete) {
+        this.bbIsDelete = bbIsDelete;
     }
 }

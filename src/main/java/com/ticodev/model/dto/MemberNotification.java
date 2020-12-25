@@ -4,29 +4,29 @@ import java.util.Date;
 
 public class MemberNotification {
 
-    private int memberNum;
+    private int mbNum;
     private int notificationType;
     private int notificationNum;
-    private Date datetime;
-    private boolean isProcess;
+    private Date mnDatetime;
+    private boolean mnIsProcess;
 
     @Override
     public String toString() {
         return "MemberNotification{" +
-                "memberNum=" + memberNum +
-                ", type=" + notificationType +
-                ", num=" + notificationNum +
-                ", datetime=" + datetime +
-                ", isProcess=" + isProcess +
+                "mbNum=" + mbNum +
+                ", notificationType=" + notificationType +
+                ", notificationNum=" + notificationNum +
+                ", mnDatetime=" + mnDatetime +
+                ", mnIsProcess=" + mnIsProcess +
                 '}';
     }
 
-    public int getMemberNum() {
-        return memberNum;
+    public int getMbNum() {
+        return mbNum;
     }
 
-    public void setMemberNum(int memberNum) {
-        this.memberNum = memberNum;
+    public void setMbNum(int mbNum) {
+        this.mbNum = mbNum;
     }
 
     public int getNotificationType() {
@@ -45,20 +45,19 @@ public class MemberNotification {
         this.notificationNum = notificationNum;
     }
 
-    public Date getDatetime() {
-        return datetime;
+    public Date getMnDatetime() {
+        return mnDatetime;
     }
 
-    public void setDatetime(Date datetime) {
-        this.datetime = datetime;
+    public void setMnDatetime(Date mnDatetime) {
+        this.mnDatetime = mnDatetime;
     }
 
-    public boolean isProcess() {
-        return isProcess;
+    public boolean isMnIsProcess() {
+        return mnIsProcess;
     }
 
-    public void setProcess(boolean process) {
-        isProcess = process;
+    public void setMnIsProcess(boolean mnIsProcess) {
+        this.mnIsProcess = mnIsProcess;
     }
-
 }

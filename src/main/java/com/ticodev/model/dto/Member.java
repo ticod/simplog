@@ -4,130 +4,140 @@ import java.util.Date;
 
 public class Member {
 
-    private int num;
-    private String id;
-    private String password;
-    private String name;
-    private String email;
-    private String tel;
-    private String birthday;
-    private String profileImage;
-    private String profileIntro;
-    private Date signup;
-    private Date lastLogin;
-    private boolean isAdmin;
+    private int mbNum;
+    private String mbId;
+    private String mbPassword;
+    private String mbSalt;
+    private String mbName;
+    private String mbEmail;
+    private String mbTel;
+    private String mbBirthday;
+    private String mbProfileImage;
+    private String mbProfileIntro;
+    private Date mbSignup;
+    private Date mbLastLogin;
+    private boolean mbIsAdmin;
 
     @Override
     public String toString() {
         return "Member{" +
-                "num=" + num +
-                ", id='" + id + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", tel='" + tel + '\'' +
-                ", birthday='" + birthday + '\'' +
-                ", profileImage='" + profileImage + '\'' +
-                ", profileIntro='" + profileIntro + '\'' +
-                ", signup=" + signup +
-                ", lastLogin=" + lastLogin +
-                ", isAdmin=" + isAdmin +
+                "mbNum=" + mbNum +
+                ", mbId='" + mbId + '\'' +
+                ", mbPassword='" + mbPassword + '\'' +
+                ", mbSalt='" + mbSalt + '\'' +
+                ", mbName='" + mbName + '\'' +
+                ", mbEmail='" + mbEmail + '\'' +
+                ", mbTel='" + mbTel + '\'' +
+                ", mbBirthday='" + mbBirthday + '\'' +
+                ", mbProfileImage='" + mbProfileImage + '\'' +
+                ", mbProfileIntro='" + mbProfileIntro + '\'' +
+                ", mbSignup=" + mbSignup +
+                ", mbLastLogin=" + mbLastLogin +
+                ", mbIsAdmin=" + mbIsAdmin +
                 '}';
     }
 
-    public int getNum() {
-        return num;
+    public int getMbNum() {
+        return mbNum;
     }
 
-    public void setNum(int num) {
-        this.num = num;
+    public void setMbNum(int mbNum) {
+        this.mbNum = mbNum;
     }
 
-    public String getId() {
-        return id;
+    public String getMbId() {
+        return mbId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setMbId(String mbId) {
+        this.mbId = mbId;
     }
 
-    public String getPassword() {
-        return password;
+    public String getMbPassword() {
+        return mbPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setMbPassword(String mbPassword) {
+        this.mbPassword = mbPassword;
     }
 
-    public String getName() {
-        return name;
+    public String getMbSalt() {
+        return mbSalt;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMbSalt(String mbSalt) {
+        this.mbSalt = mbSalt;
     }
 
-    public String getEmail() {
-        return email;
+    public String getMbName() {
+        return mbName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMbName(String mbName) {
+        this.mbName = mbName;
     }
 
-    public String getTel() {
-        return tel;
+    public String getMbEmail() {
+        return mbEmail;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
+    public void setMbEmail(String mbEmail) {
+        this.mbEmail = mbEmail;
     }
 
-    public String getBirthday() {
-        return birthday;
+    public String getMbTel() {
+        return mbTel;
     }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
+    public void setMbTel(String mbTel) {
+        this.mbTel = mbTel;
     }
 
-    public String getProfileImage() {
-        return profileImage;
+    public String getMbBirthday() {
+        return mbBirthday;
     }
 
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
+    public void setMbBirthday(String mbBirthday) {
+        this.mbBirthday = mbBirthday;
     }
 
-    public String getProfileIntro() {
-        return profileIntro;
+    public String getMbProfileImage() {
+        return mbProfileImage;
     }
 
-    public void setProfileIntro(String profileIntro) {
-        this.profileIntro = profileIntro;
+    public void setMbProfileImage(String mbProfileImage) {
+        this.mbProfileImage = mbProfileImage;
     }
 
-    public Date getSignup() {
-        return signup;
+    public String getMbProfileIntro() {
+        return mbProfileIntro;
     }
 
-    public void setSignup(Date signup) {
-        this.signup = signup;
+    public void setMbProfileIntro(String mbProfileIntro) {
+        this.mbProfileIntro = mbProfileIntro;
     }
 
-    public Date getLastLogin() {
-        return lastLogin;
+    public Date getMbSignup() {
+        return mbSignup;
     }
 
-    public void setLastLogin(Date lastLogin) {
-        this.lastLogin = lastLogin;
+    public void setMbSignup(Date mbSignup) {
+        this.mbSignup = mbSignup;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
+    public Date getMbLastLogin() {
+        return mbLastLogin;
     }
 
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
+    public void setMbLastLogin(Date mbLastLogin) {
+        this.mbLastLogin = mbLastLogin;
+    }
+
+    public boolean isMbIsAdmin() {
+        return mbIsAdmin;
+    }
+
+    public void setMbIsAdmin(boolean mbIsAdmin) {
+        this.mbIsAdmin = mbIsAdmin;
     }
 }

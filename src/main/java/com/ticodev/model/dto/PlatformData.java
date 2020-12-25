@@ -7,30 +7,30 @@ import java.util.Date;
  */
 public class PlatformData {
 
-    private Date date;
-    private int hits;
+    private Date bfDate;
+    private int bfHits;
 
     @Override
     public String toString() {
         return "PlatformData{" +
-                "date=" + date +
-                ", hits=" + hits +
+                "bfDate=" + bfDate +
+                ", bfHits=" + bfHits +
                 '}';
     }
 
-    public Date getDate() {
-        return date;
+    public Date getBfDate() {
+        return bfDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setBfDate(Date bfDate) {
+        this.bfDate = bfDate;
     }
 
-    public int getHits() {
-        return hits;
+    public int getBfHits() {
+        return bfHits;
     }
 
-    public void setHits(int hits) {
-        this.hits = hits;
+    public void setBfHits(int bfHits) {
+        this.bfHits = bfHits;
     }
 }

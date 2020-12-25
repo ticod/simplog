@@ -4,100 +4,100 @@ import java.util.Date;
 
 public class BlogBoardComment {
 
-    private int num;
-    private int boardNum;
-    private int memberNum;
-    private int parentNum;
-    private String content;
-    private Date created;
-    private Date lastModified;
-    private boolean isDelete;
-    private boolean isSecret;
+    private int cmNum;
+    private int bbNum;
+    private int mbNum;
+    private int bcParentNum;
+    private String bcContent;
+    private Date bcCreatedDatetime;
+    private Date bcLastModifiedDatetime;
+    private boolean bcIsDelete;
+    private boolean bcIsSecret;
 
     @Override
     public String toString() {
         return "BlogBoardComment{" +
-                "num=" + num +
-                ", boardNum=" + boardNum +
-                ", memberNum=" + memberNum +
-                ", parentNum=" + parentNum +
-                ", content='" + content + '\'' +
-                ", created=" + created +
-                ", lastModified=" + lastModified +
-                ", isDelete=" + isDelete +
-                ", isSecret=" + isSecret +
+                "cmNum=" + cmNum +
+                ", bbNum=" + bbNum +
+                ", mbNum=" + mbNum +
+                ", bcParentNum=" + bcParentNum +
+                ", bcContent='" + bcContent + '\'' +
+                ", bcCreatedDatetime=" + bcCreatedDatetime +
+                ", bcLastModifiedDatetime=" + bcLastModifiedDatetime +
+                ", bcIsDelete=" + bcIsDelete +
+                ", bcIsSecret=" + bcIsSecret +
                 '}';
     }
 
-    public int getNum() {
-        return num;
+    public int getCmNum() {
+        return cmNum;
     }
 
-    public void setNum(int num) {
-        this.num = num;
+    public void setCmNum(int cmNum) {
+        this.cmNum = cmNum;
     }
 
-    public int getBoardNum() {
-        return boardNum;
+    public int getBbNum() {
+        return bbNum;
     }
 
-    public void setBoardNum(int boardNum) {
-        this.boardNum = boardNum;
+    public void setBbNum(int bbNum) {
+        this.bbNum = bbNum;
     }
 
-    public int getMemberNum() {
-        return memberNum;
+    public int getMbNum() {
+        return mbNum;
     }
 
-    public void setMemberNum(int memberNum) {
-        this.memberNum = memberNum;
+    public void setMbNum(int mbNum) {
+        this.mbNum = mbNum;
     }
 
-    public int getParentNum() {
-        return parentNum;
+    public int getBcParentNum() {
+        return bcParentNum;
     }
 
-    public void setParentNum(int parentNum) {
-        this.parentNum = parentNum;
+    public void setBcParentNum(int bcParentNum) {
+        this.bcParentNum = bcParentNum;
     }
 
-    public String getContent() {
-        return content;
+    public String getBcContent() {
+        return bcContent;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setBcContent(String bcContent) {
+        this.bcContent = bcContent;
     }
 
-    public Date getCreated() {
-        return created;
+    public Date getBcCreatedDatetime() {
+        return bcCreatedDatetime;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
+    public void setBcCreatedDatetime(Date bcCreatedDatetime) {
+        this.bcCreatedDatetime = bcCreatedDatetime;
     }
 
-    public Date getLastModified() {
-        return lastModified;
+    public Date getBcLastModifiedDatetime() {
+        return bcLastModifiedDatetime;
     }
 
-    public void setLastModified(Date lastModified) {
-        this.lastModified = lastModified;
+    public void setBcLastModifiedDatetime(Date bcLastModifiedDatetime) {
+        this.bcLastModifiedDatetime = bcLastModifiedDatetime;
     }
 
-    public boolean isDelete() {
-        return isDelete;
+    public boolean isBcIsDelete() {
+        return bcIsDelete;
     }
 
-    public void setDelete(boolean delete) {
-        isDelete = delete;
+    public void setBcIsDelete(boolean bcIsDelete) {
+        this.bcIsDelete = bcIsDelete;
     }
 
-    public boolean isSecret() {
-        return isSecret;
+    public boolean isBcIsSecret() {
+        return bcIsSecret;
     }
 
-    public void setSecret(boolean secret) {
-        isSecret = secret;
+    public void setBcIsSecret(boolean bcIsSecret) {
+        this.bcIsSecret = bcIsSecret;
     }
 }

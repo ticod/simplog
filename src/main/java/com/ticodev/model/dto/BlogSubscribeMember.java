@@ -2,30 +2,30 @@ package com.ticodev.model.dto;
 
 public class BlogSubscribeMember {
 
-    private int memberNum;
-    private int blogNum;
+    private int mbNum;
+    private int bgNum;
 
     @Override
     public String toString() {
         return "BlogSubscribeMember{" +
-                "memberNum=" + memberNum +
-                ", blogNum=" + blogNum +
+                "mbNum=" + mbNum +
+                ", bgNum=" + bgNum +
                 '}';
     }
 
-    public int getMemberNum() {
-        return memberNum;
+    public int getMbNum() {
+        return mbNum;
     }
 
-    public void setMemberNum(int memberNum) {
-        this.memberNum = memberNum;
+    public void setMbNum(int mbNum) {
+        this.mbNum = mbNum;
     }
 
-    public int getBlogNum() {
-        return blogNum;
+    public int getBgNum() {
+        return bgNum;
     }
 
-    public void setBlogNum(int blogNum) {
-        this.blogNum = blogNum;
+    public void setBgNum(int bgNum) {
+        this.bgNum = bgNum;
     }
 }

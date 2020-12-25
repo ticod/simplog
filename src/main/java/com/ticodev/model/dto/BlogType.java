@@ -5,31 +5,30 @@ package com.ticodev.model.dto;
  */
 public class BlogType {
 
-    private int type;
-    private int name;
+    private int btType;
+    private int btName;
 
     @Override
     public String toString() {
         return "BlogType{" +
-                "type=" + type +
-                ", name=" + name +
+                "btType=" + btType +
+                ", btName=" + btName +
                 '}';
     }
 
-    public int getType() {
-        return type;
+    public int getBtType() {
+        return btType;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setBtType(int btType) {
+        this.btType = btType;
     }
 
-    public int getName() {
-        return name;
+    public int getBtName() {
+        return btName;
     }
 
-    public void setName(int name) {
-        this.name = name;
+    public void setBtName(int btName) {
+        this.btName = btName;
     }
-
 }
