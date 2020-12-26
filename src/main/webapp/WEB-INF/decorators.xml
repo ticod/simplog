@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <decorators defaultdir="/layout">
 
-    <!-- 블로그 설정 페이지 -->
+    <!-- 블로그 설정 -->
     <decorator name="settings" page="settings.jsp">
         <pattern>/*/settings/*.blog</pattern>
     </decorator>
 
-    <!-- 회원 정보 수정 페이지 -->
+    <!-- 회원 정보 수정 -->
     <decorator name="profile" page="profile.jsp">
-        <pattern>/*/profile/*.do</pattern>
+        <pattern>/profile/*.do</pattern>
     </decorator>
 
     <!-- 관리자 -->
@@ -18,7 +18,7 @@
 
     <!-- 메인 -->
     <decorator name="main" page="main.jsp">
-        <pattern>/*.do</pattern>
+        <pattern>/main/*.do</pattern>
     </decorator>
 
     <!-- 블로그 -->
@@ -26,7 +26,7 @@
         <pattern>/*.blog</pattern>
     </decorator>
 
-    <!-- sitemesh의 설정 제외 항목 -->
+    <!-- sitemesh 설정 제외 항목 -->
     <excludes>
         <pattern>alert.jsp</pattern>
     </excludes>
