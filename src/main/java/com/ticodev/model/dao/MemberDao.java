@@ -18,21 +18,56 @@ public class MemberDao {
         DbConnection.close(session);
     }
 
-    public Member selectMember(String id) {
-
+    public Member selectMemberById(String id) {
         SqlSession session = DbConnection.getConnection();
 
         try {
-            return session.getMapper(cls).selectMember(id);
+            return session.getMapper(cls).selectMemberById(id);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             allClose(session);
         }
         return null;
-
     }
 
+    public Member selectMemberByEmail(String email) {
+        SqlSession session = DbConnection.getConnection();
 
+        try {
+            return session.getMapper(cls).selectMemberByEmail(email);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            allClose(session);
+        }
+        return null;
+    }
+
+    public boolean insertMember(Member member) {
+        SqlSession session = DbConnection.getConnection();
+
+        try {
+            return session.getMapper(cls).insertMember(member) > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            allClose(session);
+        }
+
+        return false;
+    }
+
+    public void updateLoginDate(int num) {
+        SqlSession session = DbConnection.getConnection();
+
+        try {
+            session.getMapper(cls).updateLoginDate(num);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            allClose(session);
+        }
+    }
 
 }
