@@ -6,7 +6,7 @@ package com.ticodev.model.dto;
 public class BlogType {
 
     private int btType;
-    private int btName;
+    private String btName;
 
     @Override
     public String toString() {
@@ -24,11 +24,11 @@ public class BlogType {
         this.btType = btType;
     }
 
-    public int getBtName() {
+    public String getBtName() {
         return btName;
     }
 
-    public void setBtName(int btName) {
+    public void setBtName(String btName) {
         this.btName = btName;
     }
 }
