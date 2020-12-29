@@ -29,7 +29,7 @@
         </div>
         <div class="col-lg-6">
             <input type="password" class="form-control" name="pw"
-                   placeholder="비밀번호" id="pw" required minlength="4" maxlength="15">
+                   placeholder="비밀번호" id="pw" required minlength="6" maxlength="20">
         </div>
     </div>
     <div class="row my-4">
@@ -203,7 +203,7 @@
             alert("아이디는 4자 이상, 15자 이하로 지어주세요")
         } else if (!isValidId(id.val())) {
             console.log(isValidId(id.val()))
-            alert("아이디는 특수 문자, 공백, 대문자를 허용하지 않습니다.");
+            alert("아이디는 영어 소문자, 숫자만 허용합니다.");
         } else {
             $.ajax("id_check.do", {
                 data: params,
@@ -224,17 +224,9 @@
     }
 
     function isValidId(id) {
-        const spacePattern = /\s/gi;
-        const specialPattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
-        const upperPattern = /[A-Z]/;
+        const pattern = /^[a-z0-9+]*$/;
 
-        console.log(spacePattern.test(id));
-        console.log(specialPattern.test(id));
-        console.log(upperPattern.test(id));
-
-        return !(spacePattern.test(id)
-            || specialPattern.test(id)
-            || upperPattern.test(id));
+        return pattern.test(id);
     }
 </script>
 </body>
