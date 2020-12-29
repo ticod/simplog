@@ -13,7 +13,7 @@ public class BlogBoard {
     private Date bbCreatedDatetime;
     private Date bbLastModifiedDatetime;
     private int bbHits;
-    private int bbIsDelete;
+    private boolean bbIsDelete;
 
     @Override
     public String toString() {
@@ -103,11 +103,11 @@ public class BlogBoard {
         this.bbHits = bbHits;
     }
 
-    public int getBbIsDelete() {
+    public boolean isBbIsDelete() {
         return bbIsDelete;
     }
 
-    public void setBbIsDelete(int bbIsDelete) {
+    public void setBbIsDelete(boolean bbIsDelete) {
         this.bbIsDelete = bbIsDelete;
     }
 }
