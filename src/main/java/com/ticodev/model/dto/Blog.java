@@ -6,7 +6,7 @@ public class Blog {
 
     private int bgNum;
     private int mbNum;
-    private int bgType;
+    private int btType;
     private String bgName;
     private String bgUrl;
     private String bgProfileImage;
@@ -23,7 +23,7 @@ public class Blog {
         return "Blog{" +
                 "bgNum=" + bgNum +
                 ", mbNum=" + mbNum +
-                ", bgType=" + bgType +
+                ", btType=" + btType +
                 ", bgName='" + bgName + '\'' +
                 ", bgUrl='" + bgUrl + '\'' +
                 ", bgProfileImage='" + bgProfileImage + '\'' +
@@ -53,12 +53,12 @@ public class Blog {
         this.mbNum = mbNum;
     }
 
-    public int getBgType() {
-        return bgType;
+    public int getBtType() {
+        return btType;
     }
 
-    public void setBgType(int bgType) {
-        this.bgType = bgType;
+    public void setBtType(int btType) {
+        this.btType = btType;
     }
 
     public String getBgName() {
