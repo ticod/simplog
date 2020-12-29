@@ -8,14 +8,10 @@ import org.apache.ibatis.session.SqlSession;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MemberDao {
+public class MemberDao extends BaseDao<MemberMapper> {
 
-    private final Class<MemberMapper> cls = MemberMapper.class;
-    private Map<String, Object> params = new HashMap<>();
-
-    private void allClose(SqlSession session) {
-        params.clear();
-        DbConnection.close(session);
+    public MemberDao() {
+        super(MemberMapper.class);
     }
 
     public Member selectMemberById(String id) {
@@ -68,6 +64,32 @@ public class MemberDao {
         } finally {
             allClose(session);
         }
+    }
+
+    public boolean updateProfile(Member member) {
+        SqlSession session = DbConnection.getConnection();
+
+        try {
+            return session.getMapper(cls).updateProfile(member) > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            allClose(session);
+        }
+        return false;
+    }
+
+    public boolean updatePassword(int num, String pw, String salt) {
+        SqlSession session = DbConnection.getConnection();
+
+        try {
+            return session.getMapper(cls).updatePassword(num, pw, salt) > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            allClose(session);
+        }
+        return false;
     }
 
 }
