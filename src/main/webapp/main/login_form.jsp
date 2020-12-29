@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -7,24 +8,31 @@
 </head>
 <body>
 
+<!-- 로그인 되있는 경우, 뒤로 보냄 -->
+<script>
+    <c:if test="${!empty sessionScope.login}">
+        history.go(-1);
+    </c:if>
+</script>
+
 <div class="align-self-center w-50 m-5">
     <form method="post" action="login.do">
 
         <div class="row my-4">
-            <div class="col-lg-3">
-                <label for="id">아이디:</label>
+            <div class="col-lg-4 d-flex justify-content-center align-items-center">
+                <label class="m-0" for="id">아이디:</label>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-8">
                 <input type="text" class="form-control"
                        placeholder="아이디" name="loginId" id="id" required>
             </div>
         </div>
 
         <div class="row my-4">
-            <div class="col-lg-3">
-                <label for="pw">비밀번호:</label>
+            <div class="col-lg-4 d-flex justify-content-center align-items-center">
+                <label class="m-0" for="pw">비밀번호:</label>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-8 w-100">
                 <input type="password" class="form-control"
                        placeholder="비밀번호" name="loginPw" id="pw" required>
             </div>
