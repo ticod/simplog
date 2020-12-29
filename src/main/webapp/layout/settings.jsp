@@ -11,7 +11,6 @@
     <title><decorator:title /></title>
     <decorator:head />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -24,16 +23,30 @@
     <div class="row" style="height: 100%">
 
         <!-- Side Bar -->
-        <div class="col-2">
+        <div class="col-md-2 w-25" style="width: 260px;">
             <div class="container container-fluid bg-secondary"
-                 style="height: 100%">
+                 style="width: 100%; height: 100%">
 
                 <!-- 프로필, 로고 -->
-                <h1><img src="" alt="${blog}"></h1>
-                <div class="card"
-                     style="">
-                    <img class="card-img-top" src="" alt="Profile"
-                         style="height: 20vh;">
+                <h1 style="word-break: break-all">
+                    <a href="../main.blog" style="text-decoration: none; color: white;">
+                        <c:if test="${empty blog.bgLogo}">
+                            LOGO
+                        </c:if>
+                        <c:if test="${!empty blog.bgLogo}">
+                            <img src="" alt="${blog.bgName}">
+                        </c:if>
+                    </a>
+                </h1>
+                <div class="card bg-white">
+                    <c:if test="${empty blog.bgProfileImage}">
+                        <img class="card-img-top rounded-circle bg-white" src="../../resources/imgs/profile-user.png" alt="Profile"
+                             style="height: 120px; object-fit: contain;">
+                    </c:if>
+                    <c:if test="${!empty blog.bgProfileImage}">
+                        <img class="card-img-top rounded-circle bg-white" src="../../resources/blog_profiles/${blog.bgProfileImage}" alt="Profile"
+                             style="height: 120px; object-fit: contain;">
+                    </c:if>
                 </div>
 
                 <!-- 리스트 -->
@@ -78,40 +91,6 @@
             </div>
         </div>
 
-        <!-- The Modal -->
-        <div class="modal fade" id="deleteModal">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-
-                    <form action="../process/delete.do" method="post" id="deleteForm">
-                        <input type="hidden" name="blog" value="${blog}">
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <div class="jumbotron text-center font-weight-bold"
-                                 style="width: 100%; margin: 0;">
-                                <div class="form-group">
-                                    블로그를 정말 삭제하시겠습니까? <br>
-                                    데이터는 복구되지 않습니다. <br>
-                                    <br>
-                                    <label for="name">
-                                        블로그 명을 입력하세요
-                                        <div class="text-danger"> [ ${blog} ] </div>
-                                    </label>
-                                    <br>
-                                    <input class="form-control" type="text" id="name" name="name" placeholder="${blog}" required>
-                                    <div class="text-danger" id="valid-check"></div>
-                                    <br>
-                                    <button type="submit" class="btn btn-danger" id="submit">삭제</button>
-                                    <button type="button" class="btn btn-success" data-dismiss="modal">취소</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-
-                </div>
-            </div>
-        </div>
-
         <!-- Main Contents -->
         <div class="col-10">
             <div class="container container-fluid bg-white
@@ -121,6 +100,7 @@
                 <decorator:body />
             </div>
         </div>
+
     </div>
 </div>
 
@@ -133,15 +113,57 @@
     </div>
 </div>
 
+<!-- 블로그 삭제 Modal -->
+<div class="modal fade" id="deleteModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <form action="../../blog/process/delete.do" method="post" id="deleteForm">
+                <input type="hidden" name="blog" value="${blog.bgName}">
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="jumbotron text-center font-weight-bold"
+                         style="width: 100%; margin: 0;">
+                        <div class="form-group">
+                            블로그를 정말 삭제하시겠습니까? <br>
+                            데이터는 복구되지 않습니다. <br>
+                            <br>
+                            <label for="name">
+                                블로그 명을 입력하세요
+                                <div class="text-danger"> [ ${blog.bgName} ] </div>
+                            </label>
+                            <br>
+                            <input class="form-control" type="text" id="name" name="name" placeholder="${blog.bgName}" required>
+                            <div class="text-danger" id="valid-check"></div>
+                            <br>
+                            <button type="submit" class="btn btn-danger" id="blogDeleteSubmit">삭제</button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal">취소</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
 <script>
     $(function() {
         $("#deleteForm").submit(function() {
-            if ($("#name").val() !== "${blog}") {
+            if ($("#name").val() !== "${blog.bgName}") {
                 $("#valid-check").html("블로그 명을 확인하세요");
                 return false;
             }
         })
     })
+
+    function noneProfile(image) {
+        $(image).attr("src", "../../resources/imgs/profile-user.png");
+    }
+
+    function noneLogo(image) {
+        $(image).replaceWith("${blog.bgName}");
+    }
 </script>
 </body>
 </html>
