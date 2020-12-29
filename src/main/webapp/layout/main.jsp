@@ -86,7 +86,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link"
-                   href="${path}/main/setting.do">
+                   href="${path}/main/password_check.do">
                     정보 수정
                 </a>
             </li>
@@ -116,58 +116,61 @@
     </div>
 </div>
 
-<!-- Modals -->
-<!-- 로그인 -->
-<div class="modal fade" id="loginModal">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <form action="login.do" method="post" id="loginForm">
-                <input type="hidden" name="blog" value="${blog}">
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="jumbotron text-center font-weight-bold"
-                         style="width: 100%; margin: 0;">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-5 text-right">
-                                    <label for="loginId">
-                                        아이디
-                                    </label>
+
+<c:if test="${empty sessionScope.login}">
+    <!-- Modals -->
+    <!-- 로그인 -->
+    <div class="modal fade" id="loginModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form action="login.do" method="post" id="loginForm">
+                    <input type="hidden" name="blog" value="${blog}">
+
+                    <!-- Modal body -->
+                    <div class="modal-body text-center">
+                        <div class="jumbotron text-center w-100 m-0">
+                            <div class="form-group">
+
+                                <div class="row my-3">
+                                    <div class="col-4 d-flex justify-content-center align-items-center">
+                                        <label for="loginId" class="m-0">
+                                            아이디
+                                        </label>
+                                    </div>
+                                    <div class="col text-left">
+                                        <input class="form-control" type="text" name="loginId" id="loginId">
+                                    </div>
                                 </div>
-                                <div class="col text-left">
-                                    <input type="text" name="loginId" id="loginId">
+
+                                <div class="row my-3">
+                                    <div class="col-4 d-flex justify-content-center align-items-center">
+                                        <label for="loginPw" class="m-0">
+                                            비밀번호
+                                        </label>
+                                    </div>
+                                    <div class="col text-left">
+                                        <input class="form-control" type="password" name="loginPw" id="loginPw">
+                                    </div>
                                 </div>
+
+                                <a href="login_form.do" class="btn btn-dark my-3">
+                                    아이디/비밀번호 찾기
+                                </a>
+
+                                <button type="submit" class="btn btn-primary my-3"
+                                        id="loginSubmit">
+                                    로그인
+                                </button>
+
                             </div>
-                            <div class="row">
-                                <div class="col-5 text-right">
-                                    <label for="loginPw">
-                                        비밀번호
-                                    </label>
-                                </div>
-                                <div class="col text-left">
-                                    <input type="password" name="loginPw" id="loginPw"> <br>
-                                </div>
-                            </div>
-
-                             <br>
-
-
-                            <button type="submit" class="btn btn-primary"
-                                    id="loginSubmit">
-                                로그인
-                            </button>
-                            <br>
-                            <br>
-                            <button class="btn btn-light">아이디 찾기</button>
-                            <button class="btn btn-light">비밀번호 찾기</button>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
 
+            </div>
         </div>
     </div>
-</div>
+</c:if>
 
 </body>
 </html>
