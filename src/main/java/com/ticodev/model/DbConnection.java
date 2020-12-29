@@ -1,4 +1,4 @@
-package com.ticodev;
+package com.ticodev.model;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -10,7 +10,7 @@ import java.io.InputStream;
 
 public class DbConnection {
 
-    private static final String resource = "com/ticodev/model/mybatis-config.xml";
+    private static final String resource = "./mybatis-config.xml";
     private static final SqlSessionFactory sqlMap;
 
     private DbConnection() {}
