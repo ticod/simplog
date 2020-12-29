@@ -6,7 +6,7 @@ import com.ticodev.action.ActionForward;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class UserLoginCheckAction implements Action {
+public abstract class UserLoginCheckAction implements Action {
 
     protected String sessionId;
 
@@ -24,7 +24,11 @@ public class UserLoginCheckAction implements Action {
             return new ActionForward(false, "/alert.jsp");
         }
 
-        return new ActionForward();
+        return doExecute(request, response);
     }
+
+    public abstract ActionForward doExecute(HttpServletRequest request,
+                                            HttpServletResponse response)
+            throws Exception;
 
 }
