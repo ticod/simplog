@@ -22,8 +22,13 @@
             <div class="col-sm-9 d-flex justify-content-center align-items-center">
                 <select class="form-control" name="category" id="category" required>
                     <option value="0">기본 카테고리 (카테고리 선택)</option>
-                    <c:forEach items="${categories}" var="category">
-                        <option value="${category.ctNum}">${category.ctName}</option>
+                    <c:forEach items="${categories}" var="categoryList">
+                        <c:forEach items="${categoryList.value}" var="category" end="0">
+                            <option value="${category.ctNum}">${category.ctName}</option>
+                        </c:forEach>
+                        <c:forEach items="${categoryList.value}" var="category" begin="1">
+                            <option value="${category.ctNum}">- ${category.ctName}</option>
+                        </c:forEach>
                     </c:forEach>
                 </select>
             </div>
@@ -51,7 +56,7 @@
                 <textarea class="form-control w-100" name="content"
                           id="content" cols="30" rows="20"
                           placeholder="내용"
-                          style="resize: none;" required>${member.mbProfileIntro}</textarea>
+                          style="resize: none;" required></textarea>
             </div>
         </div>
 

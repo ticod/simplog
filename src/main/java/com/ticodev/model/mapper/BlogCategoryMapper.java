@@ -13,7 +13,7 @@ public interface BlogCategoryMapper {
     int insertBase(int blogNum);
 
     @Select("select * from blog_category_setting where bg_num = #{blogNum} and ct_num > 0 " +
-            "order by ct_sequence")
+            "order by ct_parent, ct_sequence")
     List<BlogCategorySetting> selectCategoryByBlogNum(int blogNum);
 
     @Select("select * from blog_category_setting where bg_num = #{blogNum} and ct_num = 0")

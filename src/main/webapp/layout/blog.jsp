@@ -21,7 +21,8 @@
 <nav class="navbar bg-dark navbar-dark fixed-top"
      style="z-index: 10;">
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebar">
+    <button class="navbar-toggler" type="button" id="sidebar-toggler"
+            data-toggle="collapse" data-target="#sidebar">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -35,7 +36,8 @@
     </ul>
 
     <!-- Toggle Button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <button class="navbar-toggler" type="button" id="navbar-toggler"
+            data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -139,32 +141,36 @@
                 <div class="card-body">
 
                     <!-- 카테고리 -->
-                    <div class="pre-scrollable">
+                    <form action="list.blog" method="post" id="toList">
+                    <div class="pre-scrollable text-left">
                         <ul>
-                            <li>sidebar</li>
-                            <li>sidebar</li>
-                            <li>
-                                sidebar
-                                <ul>
-                                    <li>sidebar...</li>
-                                    <li>sidebar...</li>
-                                    <li>sidebar...</li>
-                                    <li>sidebar...</li>
-                                </ul>
+                            <li class="m-1">
+                                <a href="#" onclick="submitList(0)">
+                                    전체 글 보기
+                                </a>
                             </li>
-                            <li>sidebar</li>
-                            <li>sidebar</li>
-                            <li>sidebar</li>
-                            <li>sidebar</li>
-                            <li>sidebar</li>
-                            <li>sidebar</li>
-                            <li>sidebar</li>
-                            <li>sidebar</li>
-                            <li>sidebar</li>
-                            <li>sidebar</li>
-                            <li>sidebar</li>
+                            <br>
+                            <c:forEach items="${categories}" var="categoryList">
+                                <c:forEach items="${categoryList.value}" var="category" end="0">
+                                    <li class="m-2">
+                                        <a href="#" onclick="submitList(${category.ctNum})">
+                                                ${category.ctName}
+                                        </a>
+                                    </li>
+                                </c:forEach>
+                                <c:forEach items="${categoryList.value}" var="category" begin="1">
+                                    <ul class="m-2">
+                                        <li>
+                                            <a href="#" onclick="submitList(${category.ctNum})">
+                                                    ${category.ctName}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </c:forEach>
+                            </c:forEach>
                         </ul>
                     </div>
+                    </form>
                     <br>
 
                     <!-- footer (글 작성, 설정 / 추천, 신고) -->
@@ -270,5 +276,21 @@
 </div>
 </c:if>
 
+<script>
+    const toListForm = $("#toList");
+    $(function() {
+        $("#sidebar-toggler").click(function() {
+            $("#collapsibleNavbar").collapse("hide");
+        });
+        $("#navbar-toggler").click(function() {
+            $("#sidebar").collapse("hide");
+        });
+    })
+    function submitList(categoryNum) {
+        const parameter = "<input type='hidden' name='categoryNum' value='" + categoryNum + "'>";
+        toListForm.append(parameter);
+        toListForm.submit();
+    }
+</script>
 </body>
 </html>

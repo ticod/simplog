@@ -15,50 +15,34 @@
         <input type="hidden" name="blog" value="${blog}">
 
         <!-- 카테고리 목록 -->
-        <div class="container pre-scrollable" id="categoryList"
+        <div class="container pre-scrollable text-left" id="categoryList"
              style="height: 800px;">
-            <c:forEach items="${categories}" var="category">
-
-                <c:choose>
-                    <!-- 기본 카테고리 -->
-                    <c:when test="${category.ctNum == 0}">
-
-                    </c:when>
-
-                    <!-- 깊이 1 카테고리 -->
-                    <c:when test="${category.ctParent == 0}">
-
-                    </c:when>
-
-                    <!-- 깊이 2 카테고리 -->
-                    <c:otherwise>
-
-                    </c:otherwise>
-
-                </c:choose>
+            <c:forEach items="${categories}" var="categoryList">
+                <c:forEach items="${categoryList.value}" var="category" end="0">
+                    <div class="row my-3">
+                        <div class="col-9 d-flex justify-content-start align-items-center">
+                            ${category.ctName}
+                        </div>
+                        <div class="col-2 text-right">
+                            <button type="button" class="btn btn-danger"
+                                    onclick="categoryDelete(this)">-
+                            </button>
+                        </div>
+                    </div>
+                </c:forEach>
+                <c:forEach items="${categoryList.value}" var="category" begin="1">
+                    <div class="row my-3">
+                        <div class="col-9 d-flex justify-content-start align-items-center">
+                            - ${category.ctName}
+                        </div>
+                        <div class="col-2 text-right">
+                            <button type="button" class="btn btn-danger"
+                                    onclick="categoryDelete(this)">-
+                            </button>
+                        </div>
+                    </div>
+                </c:forEach>
             </c:forEach>
-            <div class="row" id="1" style="margin: 0.5em 0 0.5em 0">
-                <div class="col-6 text-left">카테고리 1</div>
-                <div class="col-6 text-right">
-                    <button type="button" class="btn btn-danger"
-                            onclick="categoryDelete(this)">-
-                    </button>
-                </div>
-            </div>
-            <div class="row" id="2" style="margin: 0.5em 0 0.5em 0">
-                <div class="col-6 text-left">카테고리 2</div>
-                <div class="col-6 text-right">
-                    <button type="button" class="btn btn-danger"
-                            onclick="categoryDelete(this)">-</button>
-                </div>
-            </div>
-            <div class="row" id="3" style="margin: 0.5em 0 0.5em 0">
-                <div class="col-8 text-left"> - 카테고리 2 - 1</div>
-                <div class="col-4 text-right">
-                    <button type="button" class="btn btn-danger"
-                            onclick="categoryDelete(this)">-</button>
-                </div>
-            </div>
         </div>
 
         <button type="button" class="btn btn-success"

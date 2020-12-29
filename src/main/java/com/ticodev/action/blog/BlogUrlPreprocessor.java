@@ -11,14 +11,18 @@ import com.ticodev.model.dto.Member;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public abstract class BlogUrlPreprocessor implements Action {
 
     protected Blog blog;
     protected boolean isBlogger;
     protected String url;
-    protected List<BlogCategorySetting> categories;
+    protected List<BlogCategorySetting> categoriesTemp;
+    protected Map<Integer, List<BlogCategorySetting>> categories = new TreeMap<>();
 
     public abstract ActionForward doExecute(HttpServletRequest request,
                                             HttpServletResponse response)
@@ -59,7 +63,17 @@ public abstract class BlogUrlPreprocessor implements Action {
 
         // 카테고리 가져와서 저장
         BlogCategoryDao blogCategoryDao = new BlogCategoryDao();
-        categories = blogCategoryDao.selectCategoryByBlogNum(blog.getBgNum());
+        categoriesTemp = blogCategoryDao.selectCategoryByBlogNum(blog.getBgNum());
+
+        for (BlogCategorySetting category : categoriesTemp) {
+            if (category.getCtParent() == 0) {
+                List<BlogCategorySetting> list = new ArrayList<>();
+                list.add(category);
+                categories.put(category.getCtNum(), list);
+            } else {
+                categories.get(category.getCtParent()).add(category);
+            }
+        }
 
         request.setAttribute("isBlogger", isBlogger);
         request.setAttribute("blog", blog);
