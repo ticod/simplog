@@ -3,6 +3,7 @@ package com.ticodev.model.mapper;
 import com.ticodev.model.dto.BlogBoard;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 import java.util.Map;
@@ -59,4 +60,7 @@ public interface BlogBoardMapper {
 
     @Select("select * from board where bb_num = #{boardNum}")
     BlogBoard selectBoardByNum(int boardNum);
+
+    @Update("update blog_board set bb_hits = bb_hits + 1 where bb_num = #{num}")
+    int addHits(int num);
 }

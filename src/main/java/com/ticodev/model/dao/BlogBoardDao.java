@@ -86,4 +86,17 @@ public class BlogBoardDao extends BaseDao<BlogBoardMapper> {
         return null;
     }
 
+    public boolean addHits(int boardNum) {
+        SqlSession session = DbConnection.getConnection();
+
+        try {
+            return session.getMapper(cls).addHits(boardNum) > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            allClose(session);
+        }
+        return false;
+    }
+
 }
