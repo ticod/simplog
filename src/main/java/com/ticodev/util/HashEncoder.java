@@ -17,11 +17,19 @@ public class HashEncoder {
     생성자에서 암호화를 처리하고, 암호화된 메세지 또는 salt 값을
     Getter로 가져오는 방식
     */
-    public HashEncoder(String hashAlgorithm, String msg)
+    public HashEncoder(String msg)
             throws NoSuchAlgorithmException {
 
-        this.md = MessageDigest.getInstance(hashAlgorithm);
+        this.md = MessageDigest.getInstance("SHA-256");
         this.salt = generateSalt();
+        this.encodedMsg = encoding(msg + this.salt);
+    }
+
+    public HashEncoder(String msg, String salt)
+            throws NoSuchAlgorithmException {
+
+        this.md = MessageDigest.getInstance("SHA-256");
+        this.salt = salt;
         this.encodedMsg = encoding(msg + this.salt);
     }
 
@@ -32,14 +40,6 @@ public class HashEncoder {
         this.salt = salt;
         this.encodedMsg = encoding(msg + this.salt);
     }
-
-    public HashEncoder(String msg)
-            throws NoSuchAlgorithmException {
-
-        this("SHA-256", msg);
-    }
-
-
 
     private String generateSalt() {
 
