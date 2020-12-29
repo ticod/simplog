@@ -1,17 +1,16 @@
-package com.ticodev.action.blog.setting;
+package com.ticodev.action.main;
 
 import com.ticodev.action.Action;
 import com.ticodev.action.ActionForward;
-import com.ticodev.action.blog.BlogUrlProcessor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class DeleteFormAction implements Action, BlogUrlProcessor {
+public class SearchAction implements Action {
+
     @Override
     public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-        processURI(request);
-        return getActionForward(request);
+        return null;
     }
+
 }
