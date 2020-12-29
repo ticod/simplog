@@ -62,7 +62,7 @@
                 </div>
                 <div class="col-md-3 border d-none
                 d-md-flex justify-content-center align-items-center">
-                    <fmt:formatDate value="${board.bbLastModifiedDatetime}"
+                    <fmt:formatDate value="${board.bbCreatedDatetime}"
                                     pattern="yyyy-MM-dd" />
                 </div>
             </div>
