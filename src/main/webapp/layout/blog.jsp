@@ -142,7 +142,7 @@
 
                     <!-- 카테고리 -->
                     <form action="list.blog" method="post" id="toList">
-                    <div class="pre-scrollable text-left">
+                    <div class="pre-scrollable text-left text-nowrap">
                         <ul>
                             <li class="m-1">
                                 <a href="#" onclick="submitList(0)">
