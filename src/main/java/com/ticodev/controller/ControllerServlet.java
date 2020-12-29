@@ -2,6 +2,10 @@ package com.ticodev.controller;
 
 import com.ticodev.action.Action;
 import com.ticodev.action.ActionForward;
+import com.ticodev.model.dao.PlatformDataDao;
+import com.ticodev.model.dto.PlatformData;
+import com.ticodev.util.CookieAdder;
+import com.ticodev.util.CookieChecker;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -13,9 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 @WebServlet(urlPatterns = {"*.do"},
         initParams = {
@@ -76,6 +78,23 @@ public class ControllerServlet extends HttpServlet {
 
         request.setCharacterEncoding("utf-8");
 
+        // hits 처리
+        if (!CookieChecker.hasPlatformCookie(request)) {
+            PlatformDataDao dao = new PlatformDataDao();
+            PlatformData data = dao.selectByDate(new Date());
+            if (data == null) {
+                dao.initData();
+                response.addCookie(CookieAdder.getPlatformCookie());
+            } else {
+                if (dao.addHits()) {
+                    response.addCookie(CookieAdder.getPlatformCookie());
+                } else {
+                    System.out.println("서버 에러 발생");
+                }
+            }
+        }
+
+        // url 처리
         Action action = null;
         ActionForward forward = null;
         String command = null;

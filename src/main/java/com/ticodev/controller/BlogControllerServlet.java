@@ -2,6 +2,13 @@ package com.ticodev.controller;
 
 import com.ticodev.action.Action;
 import com.ticodev.action.ActionForward;
+import com.ticodev.model.dao.BlogDao;
+import com.ticodev.model.dao.BlogDataDao;
+import com.ticodev.model.dao.PlatformDataDao;
+import com.ticodev.model.dto.BlogData;
+import com.ticodev.model.dto.PlatformData;
+import com.ticodev.util.CookieAdder;
+import com.ticodev.util.CookieChecker;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -13,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -76,6 +84,7 @@ public class BlogControllerServlet extends HttpServlet {
 
         request.setCharacterEncoding("utf-8");
         String url = null;
+        String blogUrl = null;
 
         Action action;
         ActionForward forward;
@@ -83,7 +92,30 @@ public class BlogControllerServlet extends HttpServlet {
 
         try {
             command = request.getRequestURI().substring(request.getContextPath().length());
-            url = command.substring(command.substring(1).indexOf('/') + 1);
+            int splitIndex = command.substring(1).indexOf('/') + 1;
+            blogUrl =  command.substring(1, splitIndex);
+            url = command.substring(splitIndex);
+
+            int blogNum = new BlogDao().selectBlogByUrl(blogUrl).getBgNum();
+            BlogDataDao dao = new BlogDataDao();
+
+            System.out.println(url);
+            System.out.println("blog: " + blogUrl);
+
+            // hits 처리
+            if (!CookieChecker.hasBlogCookie(request, blogNum)) {
+                BlogData data = dao.selectByBlogAndDate(blogNum, new Date());
+                if (data == null) {
+                    dao.initDataBlog(blogNum);
+                    response.addCookie(CookieAdder.getBlogCookie(blogNum));
+                } else {
+                    if (dao.addHitsBlog(blogNum)) {
+                        response.addCookie(CookieAdder.getBlogCookie(blogNum));
+                    } else {
+                        System.out.println("블로그 조회수 작업 중 서버 에러 발생");
+                    }
+                }
+            }
 
             action = commandMap.get(url);
             forward = action.execute(request, response);
