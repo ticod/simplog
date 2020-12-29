@@ -15,7 +15,6 @@
             <option value="">IT</option>
             <option value="">여행</option>
             <option value="">먹거리</option>
-            <option value="">개발</option>
             <option value="">영화</option>
             <option value="">문학</option>
             <option value="">디자인</option>
@@ -28,6 +27,7 @@
             <option value="">동물</option>
             <option value="">패션</option>
             <option value="">공연</option>
+            <option value="">개발</option>
         </select>
         <input class="form-control col" type="text"
                name="target" id="target" placeholder="검색하세요!"
