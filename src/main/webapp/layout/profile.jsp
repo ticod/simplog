@@ -86,54 +86,5 @@
     </div>
 </div>
 
-<!-- Modals -->
-<!-- 로그인 -->
-<div class="modal fade" id="loginModal">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <form action="login.do" method="post" id="loginForm">
-                <input type="hidden" name="blog" value="${blog}">
-
-                <!-- Modal body -->
-                <div class="modal-body text-center">
-                    <div class="jumbotron text-center w-100 m-0">
-                        <div class="form-group">
-
-                            <div class="row my-3">
-                                <div class="col-4 d-flex justify-content-end align-items-center">
-                                    <label for="loginId" class="m-0">
-                                        아이디
-                                    </label>
-                                </div>
-                                <div class="col text-left">
-                                    <input class="form-control" type="text" name="loginId" id="loginId">
-                                </div>
-                            </div>
-
-                            <div class="row my-3">
-                                <div class="col-4 d-flex justify-content-end align-items-center">
-                                    <label for="loginPw" class="m-0">
-                                        비밀번호
-                                    </label>
-                                </div>
-                                <div class="col text-left w-100">
-                                    <input class="form-control" type="password" name="loginPw" id="loginPw">
-                                </div>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary my-3"
-                                    id="loginSubmit">
-                                로그인
-                            </button>
-
-                        </div>
-                    </div>
-                </div>
-            </form>
-
-        </div>
-    </div>
-</div>
-
 </body>
 </html>
