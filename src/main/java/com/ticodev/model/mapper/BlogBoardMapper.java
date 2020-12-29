@@ -18,7 +18,7 @@ public interface BlogBoardMapper {
 
     @Select("<script>" +
             "select " +
-            "board.bb_num, board.bb_subject, board.bb_last_modified_datetime, board.bb_hits " +
+            "board.bb_num, board.bb_subject, board.bb_created_datetime, board.bb_hits " +
             "<if test='categoryNum == 0'>" +
                 "from blog_board board where bg_num = #{blogNum}" +
             "</if>" +
@@ -58,7 +58,7 @@ public interface BlogBoardMapper {
             "</script>")
     int selectBoardCountByBlog(Map<String, Object> params);
 
-    @Select("select * from board where bb_num = #{boardNum}")
+    @Select("select * from blog_board where bb_num = #{boardNum}")
     BlogBoard selectBoardByNum(int boardNum);
 
     @Update("update blog_board set bb_hits = bb_hits + 1 where bb_num = #{num}")
