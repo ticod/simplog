@@ -21,7 +21,7 @@ public class MailAuthCheckAction implements Action {
         String authNumber = (String) request.getSession().getAttribute("auth");
         String sessionEmail = (String) request.getSession().getAttribute("email");
 
-        HashEncoder encoder = new HashEncoder("SHA-256", inputNumber, salt);
+        HashEncoder encoder = new HashEncoder(inputNumber, salt);
         String encodedInputNumber = encoder.getEncodedMsg();
 
         if (encodedInputNumber.equals(authNumber) && email.equals(sessionEmail)) {
