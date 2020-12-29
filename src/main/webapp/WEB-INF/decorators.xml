@@ -29,8 +29,11 @@
     <!-- sitemesh 설정 제외 항목 -->
     <excludes>
         <pattern>/modules/*</pattern>
+
         <pattern>/main/id_check*</pattern>
         <pattern>/main/mail_auth*</pattern>
+
+        <pattern>/profile/url_check*</pattern>
         <pattern>alert*</pattern>
         <pattern>*picture*</pattern>
     </excludes>
