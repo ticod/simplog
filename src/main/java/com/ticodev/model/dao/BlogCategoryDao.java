@@ -40,4 +40,17 @@ public class BlogCategoryDao extends BaseDao<BlogCategoryMapper> {
         return null;
     }
 
+    public BlogCategorySetting selectCategory(int blogNum, int categoryNum) {
+        SqlSession session = DbConnection.getConnection();
+
+        try {
+            return session.getMapper(cls).selectCategory(blogNum, categoryNum);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            allClose(session);
+        }
+        return null;
+    }
+
 }

@@ -26,4 +26,64 @@ public class BlogBoardDao extends BaseDao<BlogBoardMapper> {
         return false;
     }
 
+    public List<BlogBoard> selectBoardByBlog(int blogNum,
+                                             int categoryNum,
+                                             int pageNum, int limit,
+                                             String column, String find) {
+
+        SqlSession session = DbConnection.getConnection();
+
+        try {
+            params.put("blogNum", blogNum);
+            params.put("categoryNum", categoryNum);
+            params.put("start", (pageNum - 1) * limit);
+            params.put("limit", limit);
+            // 제목 or 글, 검색 키워드
+            if (column != null) {
+                params.put("column", column);
+                params.put("find", find);
+            }
+            return session.getMapper(cls).selectBoardByBlog(params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            allClose(session);
+        }
+        return null;
+    }
+
+    public int selectBoardCountByBlog(int blogNum,
+                                      int categoryNum,
+                                      String column, String find) {
+        SqlSession session = DbConnection.getConnection();
+
+        try {
+            params.put("blogNum", blogNum);
+            params.put("categoryNum", categoryNum);
+            if (column != null) {
+                params.put("column", column);
+                params.put("find", find);
+            }
+            return session.getMapper(cls).selectBoardCountByBlog(params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            allClose(session);
+        }
+        return 0;
+    }
+
+    public BlogBoard selectBoardByNum(int boardNum) {
+        SqlSession session = DbConnection.getConnection();
+
+        try {
+            return session.getMapper(cls).selectBoardByNum(boardNum);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            allClose(session);
+        }
+        return null;
+    }
+
 }

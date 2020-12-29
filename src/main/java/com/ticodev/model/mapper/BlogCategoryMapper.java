@@ -2,6 +2,7 @@ package com.ticodev.model.mapper;
 
 import com.ticodev.model.dto.BlogCategorySetting;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -16,7 +17,9 @@ public interface BlogCategoryMapper {
             "order by ct_parent, ct_sequence")
     List<BlogCategorySetting> selectCategoryByBlogNum(int blogNum);
 
-    @Select("select * from blog_category_setting where bg_num = #{blogNum} and ct_num = 0")
-    List<BlogCategorySetting> selectBaseCategoryByBlogNum(int blogNum);
+    @Select("select * from blog_category_setting " +
+            "where bg_num = #{blogNum} and ct_num = #{categoryNum} ")
+    BlogCategorySetting selectCategory(@Param("blogNum") int blogNum,
+                                       @Param("categoryNum") int categoryNum);
 
 }
