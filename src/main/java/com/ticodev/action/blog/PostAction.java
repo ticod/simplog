@@ -2,15 +2,12 @@ package com.ticodev.action.blog;
 
 import com.ticodev.action.ActionForward;
 import com.ticodev.model.dao.BlogBoardDao;
-import com.ticodev.model.dao.PlatformDataDao;
 import com.ticodev.model.dto.BlogBoard;
-import com.ticodev.model.dto.PlatformData;
 import com.ticodev.util.CookieAdder;
 import com.ticodev.util.CookieChecker;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
 
 public class PostAction extends BlogUrlPreprocessor {
 
