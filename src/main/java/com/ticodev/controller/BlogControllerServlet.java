@@ -99,9 +99,6 @@ public class BlogControllerServlet extends HttpServlet {
             int blogNum = new BlogDao().selectBlogByUrl(blogUrl).getBgNum();
             BlogDataDao dao = new BlogDataDao();
 
-            System.out.println(url);
-            System.out.println("blog: " + blogUrl);
-
             // hits 처리
             if (!CookieChecker.hasBlogCookie(request, blogNum)) {
                 BlogData data = dao.selectByBlogAndDate(blogNum, new Date());
