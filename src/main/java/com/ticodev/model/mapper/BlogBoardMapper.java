@@ -22,8 +22,10 @@ public interface BlogBoardMapper {
     @Select("<script>" +
             "select " +
             "board.bb_num, board.bb_subject, board.bb_created_datetime, board.bb_hits " +
+            // 카테고리 번호 여부. 없으면 그냥 가져옴
             "<if test='categoryNum == 0'>" +
                 "from blog_board board where " +
+            // 블로그 번호 여부 없으면 항상 참
                 "<if test='blogNum != null'>" +
                     "bg_num = #{blogNum} " +
                 "</if>" +
@@ -31,6 +33,7 @@ public interface BlogBoardMapper {
                     "0 = 0 " +
                 "</if>" +
             "</if>" +
+            // 카테고리 번호가 있으면 join 활용해서 하위 카테고리까지 탐색
             "<if test='categoryNum != 0'>" +
                 "from blog_board board join blog_category_setting category " +
                 "on board.ct_num = category.ct_num " +
@@ -38,6 +41,7 @@ public interface BlogBoardMapper {
                 "and (category.ct_num = #{categoryNum} " +
                 "or category.ct_parent = #{categoryNum}) " +
             "</if>" +
+            // 검색 여부
             "<if test='columns != null'>" +
                 "and " +
                 "<foreach collection='columns' item='column' separator='or '>" +
