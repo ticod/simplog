@@ -54,7 +54,7 @@
 
 <script>
 $(function() {
-    $.ajax("../modules/main_search_bar.jsp", {
+    $.ajax("../modules/main_search_bar.do", {
         success: function(data) {
             $("#main_search_bar").html(data);
             $("#search_icon").attr("src", "../resources/imgs/search.png");
