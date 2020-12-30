@@ -111,4 +111,16 @@ public class BlogBoardDao extends BaseDao<BlogBoardMapper> {
         }
         return false;
     }
+
+    public boolean deleteBoardByNum(int num) {
+        SqlSession session = DbConnection.getConnection();
+        try {
+            return session.getMapper(cls).deleteBoardByNum(num) > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            allClose(session);
+        }
+        return false;
+    }
 }

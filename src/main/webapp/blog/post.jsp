@@ -61,10 +61,10 @@
                        class="btn btn-success mx-1">
                         수정
                     </a>
-                    <a href="delete_form.blog"
-                       class="btn btn-danger mx-1">
+                    <button data-toggle="modal" data-target="#deleteModal"
+                       class="btn btn-danger mx-1" href="#">
                         삭제
-                    </a>
+                    </button>
                 </c:if>
 
                 <c:if test="${!isBlogger}">
@@ -333,6 +333,34 @@
     </div>
 
 </div>
+
+<!-- 블로그 삭제 모달 -->
+<!-- Modals -->
+<!-- 로그인 -->
+<c:if test="${!empty sessionScope.login && isBlogger}">
+    <div class="modal fade" id="deleteModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-body m-2 p-5 bg-light
+                    d-flex flex-column justify-content-center align-items-center">
+                    <h4 class="my-3">
+                        정말 삭제하실건가요?
+                    </h4>
+                    <br>
+                    <br>
+                    <form class="mt-3" action="delete.blog">
+                        <input type="hidden" name="num" value="${board.bbNum}">
+                        <button class="btn btn-outline-danger">
+                            확인
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</c:if>
 
 <script>
 $(function() {

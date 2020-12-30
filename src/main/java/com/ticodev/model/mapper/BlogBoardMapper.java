@@ -75,4 +75,10 @@ public interface BlogBoardMapper {
             "bb_file = #{bbFile} " +
             "where bb_num = #{bbNum}")
     int updateBoard(BlogBoard board);
+
+    @Update("update blog_board " +
+            "set " +
+            "bb_is_deleted = 1 " +
+            "where bb_num = #{bbNum}")
+    int deleteBoardByNum(int num);
 }
