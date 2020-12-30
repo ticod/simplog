@@ -22,6 +22,10 @@ public class AlertAction {
         return new ActionForward(false, "/alert.jsp");
     }
 
+    public static ActionForward forward(boolean redirect) {
+        return new ActionForward(redirect, "/alert.jsp");
+    }
+
     public static ActionForward forward() {
         return new ActionForward(false, "/alert.jsp");
     }
