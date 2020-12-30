@@ -10,13 +10,13 @@ public class AlertAction {
         return new ActionForward(false, "/alert.jsp");
     }
 
-    public static ActionForward forward(HttpServletRequest request, String msg) {
+    public static ActionForward forwardBeforePage(HttpServletRequest request, String msg) {
         request.setAttribute("msg", msg);
         request.setAttribute("url", request.getHeader("Referer"));
         return new ActionForward(false, "/alert.jsp");
     }
 
-    public static ActionForward forward(HttpServletRequest request) {
+    public static ActionForward forwardError(HttpServletRequest request) {
         request.setAttribute("msg", "잘못된 경로입니다.");
         request.setAttribute("url", request.getHeader("Referer"));
         return new ActionForward(false, "/alert.jsp");

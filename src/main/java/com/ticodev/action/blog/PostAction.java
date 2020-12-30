@@ -21,13 +21,13 @@ public class PostAction extends BlogUrlPreprocessor {
         try {
             num = Integer.parseInt(request.getParameter("num"));
         } catch (NumberFormatException e) {
-            return AlertAction.forward(request);
+            return AlertAction.forwardError(request);
         }
 
         BlogBoardDao dao = new BlogBoardDao();
         BlogBoard board = dao.selectBoardByNum(num);
         if (board == null || board.isBbIsDelete()) {
-            return AlertAction.forward(request, "서버 에러 발생");
+            return AlertAction.forwardBeforePage(request, "서버 에러 발생");
         }
 
         if (!CookieChecker.hasBoardCookie(request, board.getBbNum())) {

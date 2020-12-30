@@ -23,7 +23,7 @@ public abstract class BlogUrlPreprocessor implements Action {
     protected boolean isBlogger;
     protected String url;
     protected List<BlogCategorySetting> categoriesTemp;
-    protected Map<Integer, List<BlogCategorySetting>> categories = new TreeMap<>();
+    protected Map<Integer, List<BlogCategorySetting>> categories;
 
     public abstract ActionForward doExecute(HttpServletRequest request,
                                             HttpServletResponse response)
@@ -44,7 +44,7 @@ public abstract class BlogUrlPreprocessor implements Action {
         BlogDao blogDao = new BlogDao();
         blog = blogDao.selectBlogByUrl(blogUrl);
         if (blog == null) {
-            return AlertAction.forward(request);
+            return AlertAction.forwardError(request);
         }
 
         // 현재 로그인한 사람의 블로거 여부
@@ -64,6 +64,7 @@ public abstract class BlogUrlPreprocessor implements Action {
         BlogCategoryDao blogCategoryDao = new BlogCategoryDao();
         categoriesTemp = blogCategoryDao.selectCategoryByBlogNum(blog.getBgNum());
 
+        categories = new TreeMap<>();
         for (BlogCategorySetting category : categoriesTemp) {
             if (category.getCtParent() == 0) {
                 List<BlogCategorySetting> list = new ArrayList<>();
@@ -78,6 +79,9 @@ public abstract class BlogUrlPreprocessor implements Action {
         request.setAttribute("blog", blog);
         request.setAttribute("url", tailUrl);
         request.setAttribute("categories", categories);
+        System.out.println(blog);
+        System.out.println(blog.getBgNum());
+        System.out.println(categories);
 
         return doExecute(request, response);
     }

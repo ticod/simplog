@@ -14,7 +14,7 @@ public class BloggerCheckAction extends BlogUrlPreprocessor {
             throws Exception {
 
         if (!isBlogger) {
-            return AlertAction.forward(request);
+            return AlertAction.forwardError(request);
         }
 
         return getActionForward();

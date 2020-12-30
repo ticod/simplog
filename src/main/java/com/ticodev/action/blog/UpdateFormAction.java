@@ -16,20 +16,20 @@ public class UpdateFormAction extends BlogUrlPreprocessor {
             throws Exception {
 
         if (!isBlogger) {
-            return AlertAction.forward(request);
+            return AlertAction.forwardError(request);
         }
 
         int num;
         try {
             num = Integer.parseInt(request.getParameter("num"));
         } catch (NumberFormatException e) {
-            return AlertAction.forward(request);
+            return AlertAction.forwardError(request);
         }
 
         BlogBoardDao dao = new BlogBoardDao();
         BlogBoard board = dao.selectBoardByNum(num);
         if (board == null || board.isBbIsDelete()) {
-            return AlertAction.forward(request, "삭제된 게시글입니다.");
+            return AlertAction.forwardBeforePage(request, "삭제된 게시글입니다.");
         }
 
         request.setAttribute("board", board);
