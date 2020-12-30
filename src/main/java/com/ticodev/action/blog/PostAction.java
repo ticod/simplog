@@ -20,17 +20,13 @@ public class PostAction extends BlogUrlPreprocessor {
         try {
             num = Integer.parseInt(request.getParameter("num"));
         } catch (NumberFormatException e) {
-            request.setAttribute("msg", "잘못된 접근입니다.");
-            request.setAttribute("url", request.getHeader("Referer"));
-            return new ActionForward(false, "/alert.jsp");
+            return getErrorActionForward(request);
         }
 
         BlogBoardDao dao = new BlogBoardDao();
         BlogBoard board = dao.selectBoardByNum(num);
         if (board == null || board.isBbIsDelete()) {
-            request.setAttribute("msg", "서버 오류 발생.");
-            request.setAttribute("url", request.getHeader("Referer"));
-            return new ActionForward(false, "/alert.jsp");
+            return getErrorActionForward(request, "서버 에러 발생");
         }
 
         if (!CookieChecker.hasBoardCookie(request, board.getBbNum())) {

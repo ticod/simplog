@@ -13,9 +13,7 @@ public class BloggerCheckAction extends BlogUrlPreprocessor {
             throws Exception {
 
         if (!isBlogger) {
-            request.setAttribute("msg", "잘못된 경로입니다.");
-            request.setAttribute("url", request.getHeader("Referer"));
-            return new ActionForward(false, "/alert.jsp");
+            return getErrorActionForward(request);
         }
 
         return getActionForward();

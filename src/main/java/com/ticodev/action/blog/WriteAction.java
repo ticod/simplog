@@ -4,6 +4,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.ticodev.action.ActionForward;
 import com.ticodev.model.dao.BlogBoardDao;
 import com.ticodev.model.dto.BlogBoard;
+import com.ticodev.util.CookieAdder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,17 +44,14 @@ public class WriteAction extends BlogUrlPreprocessor {
             board.setBbFile(multi.getFilesystemName("file"));
         } catch (IOException e) {
             e.printStackTrace();
-            request.setAttribute("msg", msg);
-            request.setAttribute("url", url);
-            return new ActionForward(false, "/alert.jsp");
+            return getErrorActionForward(request, msg, url);
         }
 
         if (dao.insertBoard(board)) {
-            return new ActionForward(true, "main.blog");
+            response.addCookie(CookieAdder.getBoardCookie(board.getBbNum()));
+            return new ActionForward(true, "post.blog?num=" + board.getBbNum());
         } else {
-            request.setAttribute("msg", msg);
-            request.setAttribute("url", url);
-            return new ActionForward(false, "/alert.jsp");
+            return getErrorActionForward(request, msg, url);
         }
     }
 
