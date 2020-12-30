@@ -122,6 +122,7 @@ public class BlogControllerServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/error/404.jsp");
             return;
         } catch (Exception e) {
+            e.printStackTrace();
             throw new ServletException();
         }
 
