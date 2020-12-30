@@ -3,6 +3,7 @@ package com.ticodev.model.mapper;
 import com.ticodev.model.dto.BlogBoard;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
@@ -14,6 +15,8 @@ public interface BlogBoardMapper {
             "(bg_num, ct_num, bb_subject, bb_content, bb_file) " +
             "values " +
             "(#{bgNum}, #{ctNum}, #{bbSubject}, #{bbContent}, #{bbFile})")
+    @SelectKey(statement = "select last_insert_id()", keyProperty = "bbNum",
+            before = false, resultType = int.class)
     int insertBoard(BlogBoard board);
 
     @Select("<script>" +
@@ -63,4 +66,13 @@ public interface BlogBoardMapper {
 
     @Update("update blog_board set bb_hits = bb_hits + 1 where bb_num = #{num}")
     int addHits(int num);
+
+    @Update("update blog_board " +
+            "set " +
+            "ct_num = #{ctNum}, " +
+            "bb_subject = #{bbSubject}, " +
+            "bb_content = #{bbContent}, " +
+            "bb_file = #{bbFile} " +
+            "where bb_num = #{bbNum}")
+    int updateBoard(BlogBoard board);
 }
