@@ -5,6 +5,8 @@ import com.ticodev.model.dto.MemberRecommend;
 import com.ticodev.model.mapper.MemberRecommendMapper;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.List;
+
 public class MemberRecommendDao extends BaseDao<MemberRecommendMapper> {
 
     public static final int CANCEL = 1;
@@ -23,10 +25,9 @@ public class MemberRecommendDao extends BaseDao<MemberRecommendMapper> {
                                                     int contentNum) {
 
         SqlSession session = DbConnection.getConnection();
-
         try {
             return session.getMapper(cls)
-                    .selectRecommendByContent(memberNum, contentType, contentNum);
+                    .selectRecommendByContentAndMember(memberNum, contentType, contentNum);
         } catch(Exception e) {
             e.printStackTrace();
         } finally {
@@ -34,6 +35,32 @@ public class MemberRecommendDao extends BaseDao<MemberRecommendMapper> {
         }
         return null;
 
+    }
+
+    public List<MemberRecommend> selectRecommendsByMember(int memberNum) {
+        SqlSession session = DbConnection.getConnection();
+        try {
+            return session.getMapper(cls)
+                    .selectRecommendsByMember(memberNum);
+        } catch(Exception e) {
+            e.printStackTrace();
+        } finally {
+            allClose(session);
+        }
+        return null;
+    }
+
+    public int selectCountByContent(int contentType, int contentNum) {
+        SqlSession session = DbConnection.getConnection();
+        try {
+            return session.getMapper(cls)
+                    .selectCountByContent(contentType, contentNum);
+        } catch(Exception e) {
+            e.printStackTrace();
+        } finally {
+            allClose(session);
+        }
+        return 0;
     }
 
     public boolean insertRecommend(int memberNum,
@@ -55,13 +82,16 @@ public class MemberRecommendDao extends BaseDao<MemberRecommendMapper> {
 
     }
 
-    public boolean updateRecommend(boolean isCancel) {
+    public boolean updateRecommend(boolean isCancel,
+                                   int memberNum,
+                                   int contentType,
+                                   int contentNum) {
 
         SqlSession session = DbConnection.getConnection();
 
         try {
             return session.getMapper(cls)
-                    .updateRecommend(isCancel) > 0;
+                    .updateRecommend(isCancel, memberNum, contentType, contentNum) > 0;
         } catch(Exception e) {
             e.printStackTrace();
         } finally {

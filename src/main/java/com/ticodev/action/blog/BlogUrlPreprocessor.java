@@ -6,9 +6,11 @@ import com.ticodev.action.AlertAction;
 import com.ticodev.model.dao.BlogCategoryDao;
 import com.ticodev.model.dao.BlogDao;
 import com.ticodev.model.dao.MemberDao;
+import com.ticodev.model.dao.MemberRecommendDao;
 import com.ticodev.model.dto.Blog;
 import com.ticodev.model.dto.BlogCategorySetting;
 import com.ticodev.model.dto.Member;
+import com.ticodev.model.dto.MemberRecommend;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,16 +49,6 @@ public abstract class BlogUrlPreprocessor implements Action {
             return AlertAction.forwardError(request);
         }
 
-        // 현재 로그인한 사람의 블로거 여부
-        String sessionId = (String) request.getSession().getAttribute("login");
-        if (sessionId != null) {
-            MemberDao dao = new MemberDao();
-            Member member = dao.selectMemberById(sessionId);
-            isBlogger = member.getMbNum() == blog.getMbNum();
-        } else {
-            isBlogger = false;
-        }
-
         // 실제 url 처리
         url = "/blog" + tailUrl.replace(".blog", ".jsp");
 
@@ -75,13 +67,34 @@ public abstract class BlogUrlPreprocessor implements Action {
             }
         }
 
+        MemberRecommendDao memberRecommendDao = new MemberRecommendDao();
+
+        // 현재 로그인한 사람의 블로거 여부
+        Member member = null;
+        MemberRecommend memberRecommend = null;
+        String sessionId = (String) request.getSession().getAttribute("login");
+        if (sessionId != null) {
+            MemberDao dao = new MemberDao();
+            member = dao.selectMemberById(sessionId);
+            memberRecommend = memberRecommendDao
+                    .selectRecommendByContent(member.getMbNum(), 0, blog.getBgNum());
+            request.setAttribute("memberRecommend", memberRecommend);
+            isBlogger = member.getMbNum() == blog.getMbNum();
+        } else {
+            isBlogger = false;
+        }
+
+
+        int blogRecommendCount = memberRecommendDao
+                .selectCountByContent(0, blog.getBgNum());
+
+
+        request.setAttribute("member", member);
         request.setAttribute("isBlogger", isBlogger);
         request.setAttribute("blog", blog);
         request.setAttribute("url", tailUrl);
         request.setAttribute("categories", categories);
-        System.out.println(blog);
-        System.out.println(blog.getBgNum());
-        System.out.println(categories);
+        request.setAttribute("blogRecommendCount", blogRecommendCount);
 
         return doExecute(request, response);
     }
@@ -90,23 +103,5 @@ public abstract class BlogUrlPreprocessor implements Action {
     protected ActionForward getActionForward() {
         return new ActionForward(false, url);
     }
-
-//    protected ActionForward getErrorActionForward(HttpServletRequest request, String msg, String url) {
-//        request.setAttribute("msg", msg);
-//        request.setAttribute("url", url);
-//        return new ActionForward(false, "/alert.jsp");
-//    }
-//
-//    protected ActionForward getErrorActionForward(HttpServletRequest request, String msg) {
-//        request.setAttribute("msg", msg);
-//        request.setAttribute("url", request.getHeader("Referer"));
-//        return new ActionForward(false, "/alert.jsp");
-//    }
-//
-//    protected ActionForward getErrorActionForward(HttpServletRequest request) {
-//        request.setAttribute("msg", "잘못된 경로입니다.");
-//        request.setAttribute("url", request.getHeader("Referer"));
-//        return new ActionForward(false, "/alert.jsp");
-//    }
 
 }

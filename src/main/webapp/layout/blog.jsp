@@ -14,6 +14,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        @media screen and (max-width: 768px) {
+            #sidebar {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -100,20 +107,26 @@
 <!-- Contents -->
 <div class="container-fluid">
     <div class="row">
-        <div class="col-3 my-1 mt-5 pt-2 px-0 mb-0 pb-0 fixed-top">
+        <div class="col-sm-6 col-md-4 my-1 mt-5 pt-2 px-0 mb-0 pb-0 fixed-top w-100">
             <div class="collapse card bg-light text-center mh-100" style="min-width: 30vw;"
                  id="sidebar">
 
                 <div class="card-header">
-                    <div class="text-left">
+                    <div class="row">
 
-                        <c:if test="${empty blog.bgLogo}">
-                            <img src="../resources/imgs/search.png" alt="" height="40">
-                        </c:if>
+                        <div class="col-6">
+                            <c:if test="${empty blog.bgLogo}">
+                                <img src="../resources/imgs/search.png" alt="" height="40">
+                            </c:if>
 
-                        <c:if test="${!empty blog.bgLogo}">
-                            <img src="../resources/blog_logos/${blog.bgLogo}" alt="" height="40">
-                        </c:if>
+                            <c:if test="${!empty blog.bgLogo}">
+                                <img src="../resources/blog_logos/${blog.bgLogo}" alt="" height="40">
+                            </c:if>
+                        </div>
+
+                        <div class="col-6">
+                            추천 수: ${blogRecommendCount}
+                        </div>
 
                     </div>
                     <div>
@@ -150,6 +163,7 @@
                                 </a>
                             </li>
                             <br>
+                            
                             <c:forEach items="${categories}" var="categoryList">
                                 <c:forEach items="${categoryList.value}" var="category" end="0">
                                     <li class="m-2">
@@ -168,6 +182,7 @@
                                     </ul>
                                 </c:forEach>
                             </c:forEach>
+                            
                         </ul>
                     </div>
                     </form>
@@ -176,7 +191,7 @@
                     <!-- footer (글 작성, 설정 / 추천, 신고) -->
                     <c:if test="${!empty sessionScope.login}">
                         <div class="card-footer">
-                            <div class="row">
+                            <div class="row d-flex justify-content-center align-items-center">
 
                                 <c:if test="${isBlogger}">
                                 <div class="col-lg-6">
@@ -187,13 +202,15 @@
                                 </div>
                                 </c:if>
 
-                                <c:if test="${!isBlogger}">
-                                    <div class="col-lg-6">
-                                        <a href="recommended.blog">추천</a>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <a href="report.blog">신고</a>
-                                    </div>
+                                <c:if test="${!isBlogger && !empty sessionScope.login}">
+                                    <!-- 추천 버튼 ajax -->
+                                    <span class="p-1" id="recommend_btn_blog"></span>
+                                    <span class="p-1">
+                                        <a class="btn btn-danger btn-sm" href="report.blog">신고</a>
+                                    </span>
+                                    <span class="p-1">
+                                        <a class="btn btn-warning btn-sm" href="subscribe.blog">구독</a>
+                                    </span>
                                 </c:if>
 
                             </div>
@@ -276,6 +293,7 @@
 </div>
 </c:if>
 
+<script src="../modules/recommendButton.js"></script>
 <script>
     const toListForm = $("#toList");
     $(function() {
@@ -285,6 +303,16 @@
         $("#navbar-toggler").click(function() {
             $("#sidebar").collapse("hide");
         });
+        <c:if test="${!isBlogger && !empty sessionScope.login}">
+            <c:choose>
+                <c:when test="${empty memberRecommend || !memberRecommend.mrIsCancel}">
+                    ajaxRecommendButton(${member.mbNum}, 0, ${blog.bgNum}, "recommend_btn_blog", true)
+                </c:when>
+                <c:otherwise>
+                    ajaxRecommendButton(${member.mbNum}, 0, ${blog.bgNum}, "recommend_btn_blog", false)
+                </c:otherwise>
+            </c:choose>
+        </c:if>
     })
     function submitList(categoryNum) {
         const parameter = "<input type='hidden' name='categoryNum' value='" + categoryNum + "'>";
