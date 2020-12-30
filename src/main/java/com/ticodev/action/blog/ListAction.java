@@ -8,6 +8,7 @@ import com.ticodev.model.dto.BlogCategorySetting;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 import java.util.List;
 
 public class ListAction extends BlogUrlPreprocessor {
@@ -25,13 +26,16 @@ public class ListAction extends BlogUrlPreprocessor {
 
         String find = request.getParameter("find");
         String column = request.getParameter("column");
+        List<String> columns = null;
 
         if (find == null || column == null
                 || find.trim().equals("")
                 || column.trim().equals("")) {
             find = null;
-            column = null;
+        } else {
+            columns = Arrays.asList(column.split(",").clone());
         }
+        System.out.println(columns);
 
         int categoryNum;
         try {
@@ -56,10 +60,10 @@ public class ListAction extends BlogUrlPreprocessor {
 
         List<BlogBoard> boards =
                 dao.selectBoardByBlog(blog.getBgNum(),
-                        categoryNum, pageNum, limit, column, find);
+                        categoryNum, pageNum, limit, columns, find);
 
         int boardCount = dao.selectBoardCountByBlog(blog.getBgNum(),
-                categoryNum, column, find);
+                categoryNum, columns, find);
 
         BlogCategorySetting currentCategory = new BlogCategoryDao()
                 .selectCategory(blog.getBgNum(), categoryNum);

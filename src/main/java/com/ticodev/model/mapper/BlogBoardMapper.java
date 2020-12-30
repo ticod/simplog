@@ -23,7 +23,13 @@ public interface BlogBoardMapper {
             "select " +
             "board.bb_num, board.bb_subject, board.bb_created_datetime, board.bb_hits " +
             "<if test='categoryNum == 0'>" +
-                "from blog_board board where bg_num = #{blogNum}" +
+                "from blog_board board where " +
+                "<if test='blogNum != null'>" +
+                    "bg_num = #{blogNum} " +
+                "</if>" +
+                "<if test='blogNum == null'>" +
+                    "0 = 0 " +
+                "</if>" +
             "</if>" +
             "<if test='categoryNum != 0'>" +
                 "from blog_board board join blog_category_setting category " +
@@ -32,8 +38,18 @@ public interface BlogBoardMapper {
                 "and (category.ct_num = #{categoryNum} " +
                 "or category.ct_parent = #{categoryNum}) " +
             "</if>" +
-            "<if test='column != null'>" +
-                "and board.bb_${column} like '%${find}%' " +
+            "<if test='columns != null'>" +
+                "and " +
+                "<foreach collection='columns' item='column' separator='or '>" +
+                    "board.bb_${column} like '%${find}%' " +
+                "</foreach>" +
+            "</if>" +
+            // 블로그 분야 검색 여부
+            "<if test='blogTypes != null'>" +
+                "and bt_type in " +
+                "<foreach collection='blogTypes' item='blogType' open='(' separator=',' close=')'>" +
+                    "#{blogType}" +
+                "</foreach>" +
             "</if>" +
             "and board.bb_is_deleted != 1 " +
             "<if test='start != null'>" +
@@ -44,9 +60,18 @@ public interface BlogBoardMapper {
 
     @Select("<script>" +
             "select count(*) " +
+            // 카테고리 번호 여부. 없으면 그냥 가져옴
             "<if test='categoryNum == 0'>" +
-                "from blog_board board where bg_num = #{blogNum}" +
+                "from blog_board board where " +
+            // 블로그 번호 여부 없으면 항상 참
+                "<if test='blogNum != null'>" +
+                    "bg_num = #{blogNum} " +
+                "</if>" +
+                "<if test='blogNum == null'>" +
+                    "0 = 0 " +
+                "</if>" +
             "</if>" +
+            // 카테고리 번호가 있으면 join 활용해서 하위 카테고리까지 탐색
             "<if test='categoryNum != 0'>" +
                 "from blog_board board join blog_category_setting category " +
                 "on board.ct_num = category.ct_num " +
@@ -54,9 +79,21 @@ public interface BlogBoardMapper {
                 "and (category.ct_num = #{categoryNum} " +
                 "or category.ct_parent = #{categoryNum}) " +
             "</if>" +
-            "<if test='column != null'>" +
-                "and board.bb_${column} like '%${find}%' " +
+            // 검색 여부
+            "<if test='columns != null'>" +
+                "and " +
+                "<foreach collection='columns' item='column' separator='or '>" +
+                    "board.bb_${column} like '%${find}%' " +
+                "</foreach>" +
             "</if>" +
+            // 블로그 분야 검색 여부
+            "<if test='blogTypes != null'>" +
+                "and bt_type in " +
+                "<foreach collection='blogTypes' item='blogType' open='(' separator=',' close=')'>" +
+                    "#{blogType}" +
+                "</foreach>" +
+            "</if>" +
+            // 삭제 안된 게시글만 가져옴
             "and board.bb_is_deleted != 1 " +
             "</script>")
     int selectBoardCountByBlog(Map<String, Object> params);

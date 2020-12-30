@@ -13,7 +13,6 @@
 <div class="align-self-center container-fluid d-flex flex-column p-0 m-5 w-75 border border-dark">
 
     <!-- 제목 부분 -->
-
     <div class="align-self-center text-right w-100" style="height: 1.5rem;">
         카테고리: ${currentCategory.ctName} &nbsp;
     </div>
@@ -74,6 +73,8 @@
 
     <form action="list.blog" method="post" id="paging">
         <input type="hidden" name="pageNum" id="pageNum" value="${pageNum}">
+        <input type="hidden" name="categoryNum"
+               id="categoryNum" value="${currentCategory.ctNum}">
 
         <!-- 푸터 페이징 -->
         <div class="align-self-center row border w-100 m-0 p-0 pt-3">
@@ -125,12 +126,47 @@
                 </ul>
             </div>
         </div>
+
+        <div class="form-group my-2 d-flex justify-content-center align-items-center">
+
+            <select class="form-control-sm w-25 mx-1" name="column" id="column" required>
+                <option value="">카테고리 선택</option>
+                <option value="subject,content">제목, 내용</option>
+                <option value="subject">제목</option>
+                <option value="content">내용</option>
+            </select>
+
+            <input class="form-control w-50 mx-1" type="text" name="find"
+                   placeholder="검색!" value="${param.find}">
+
+            <input type="image" class="form-control col-lg-1 btn-outline-primary mx-1"
+                   src="../resources/imgs/search.png" id="search_icon"
+                   style="object-fit: contain;">
+        </div>
+
+    </form>
+
+    <form class="w-75 align-self-center" action="list.blog" method="post">
+
+        <input type="hidden" name="pageNum" value="" id="searchPageNum">
+
+        <!-- 검색 바 -->
+
+
     </form>
 
 </div>
 
 <script>
+    $(function() {
+        $("#column").change(function() {
+            console.log($(this).val());
+        })
+        $("#column").val("${param.column}");
+    })
+
 function movePage(pageNum) {
+    $("#searchPageNum").val(pageNum);
     $("#pageNum").val(pageNum);
     $("#paging").submit();
 }

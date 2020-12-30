@@ -29,7 +29,7 @@ public class BlogBoardDao extends BaseDao<BlogBoardMapper> {
     public List<BlogBoard> selectBoardByBlog(int blogNum,
                                              int categoryNum,
                                              int pageNum, int limit,
-                                             String column, String find) {
+                                             List<String> columns, String find) {
 
         SqlSession session = DbConnection.getConnection();
 
@@ -39,8 +39,8 @@ public class BlogBoardDao extends BaseDao<BlogBoardMapper> {
             params.put("start", (pageNum - 1) * limit);
             params.put("limit", limit);
             // 제목 or 글, 검색 키워드
-            if (column != null) {
-                params.put("column", column);
+            if (columns != null) {
+                params.put("columns", columns);
                 params.put("find", find);
             }
             return session.getMapper(cls).selectBoardByBlog(params);
@@ -54,14 +54,14 @@ public class BlogBoardDao extends BaseDao<BlogBoardMapper> {
 
     public int selectBoardCountByBlog(int blogNum,
                                       int categoryNum,
-                                      String column, String find) {
+                                      List<String> columns, String find) {
         SqlSession session = DbConnection.getConnection();
 
         try {
             params.put("blogNum", blogNum);
             params.put("categoryNum", categoryNum);
-            if (column != null) {
-                params.put("column", column);
+            if (columns != null) {
+                params.put("columns", columns);
                 params.put("find", find);
             }
             return session.getMapper(cls).selectBoardCountByBlog(params);
