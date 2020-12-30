@@ -2,6 +2,7 @@ package com.ticodev.action.blog;
 
 import com.ticodev.action.Action;
 import com.ticodev.action.ActionForward;
+import com.ticodev.action.ErrorAction;
 import com.ticodev.model.dao.BlogCategoryDao;
 import com.ticodev.model.dao.BlogDao;
 import com.ticodev.model.dao.MemberDao;
@@ -43,7 +44,7 @@ public abstract class BlogUrlPreprocessor implements Action {
         BlogDao blogDao = new BlogDao();
         blog = blogDao.selectBlogByUrl(blogUrl);
         if (blog == null) {
-            return getErrorActionForward(request);
+            return ErrorAction.forward(request);
         }
 
         // 현재 로그인한 사람의 블로거 여부
@@ -86,22 +87,22 @@ public abstract class BlogUrlPreprocessor implements Action {
         return new ActionForward(false, url);
     }
 
-    protected ActionForward getErrorActionForward(HttpServletRequest request, String msg, String url) {
-        request.setAttribute("msg", msg);
-        request.setAttribute("url", url);
-        return new ActionForward(false, "/alert.jsp");
-    }
-
-    protected ActionForward getErrorActionForward(HttpServletRequest request, String msg) {
-        request.setAttribute("msg", msg);
-        request.setAttribute("url", request.getHeader("Referer"));
-        return new ActionForward(false, "/alert.jsp");
-    }
-
-    protected ActionForward getErrorActionForward(HttpServletRequest request) {
-        request.setAttribute("msg", "잘못된 경로입니다.");
-        request.setAttribute("url", request.getHeader("Referer"));
-        return new ActionForward(false, "/alert.jsp");
-    }
+//    protected ActionForward getErrorActionForward(HttpServletRequest request, String msg, String url) {
+//        request.setAttribute("msg", msg);
+//        request.setAttribute("url", url);
+//        return new ActionForward(false, "/alert.jsp");
+//    }
+//
+//    protected ActionForward getErrorActionForward(HttpServletRequest request, String msg) {
+//        request.setAttribute("msg", msg);
+//        request.setAttribute("url", request.getHeader("Referer"));
+//        return new ActionForward(false, "/alert.jsp");
+//    }
+//
+//    protected ActionForward getErrorActionForward(HttpServletRequest request) {
+//        request.setAttribute("msg", "잘못된 경로입니다.");
+//        request.setAttribute("url", request.getHeader("Referer"));
+//        return new ActionForward(false, "/alert.jsp");
+//    }
 
 }

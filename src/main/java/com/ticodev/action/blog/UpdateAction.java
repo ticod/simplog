@@ -2,6 +2,7 @@ package com.ticodev.action.blog;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.ticodev.action.ActionForward;
+import com.ticodev.action.ErrorAction;
 import com.ticodev.model.dao.BlogBoardDao;
 import com.ticodev.model.dto.BlogBoard;
 import com.ticodev.util.CookieAdder;
@@ -47,13 +48,13 @@ public class UpdateAction extends BlogUrlPreprocessor {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            return getErrorActionForward(request, msg, url);
+            return ErrorAction.forward(request, msg, url);
         }
 
         if (dao.updateBoard(board)) {
             return new ActionForward(true, "post.blog?num=" + board.getBbNum());
         } else {
-            return getErrorActionForward(request, msg, url);
+            return ErrorAction.forward(request, msg, url);
         }
     }
 

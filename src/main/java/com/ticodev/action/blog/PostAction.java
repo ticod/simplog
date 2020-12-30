@@ -1,6 +1,7 @@
 package com.ticodev.action.blog;
 
 import com.ticodev.action.ActionForward;
+import com.ticodev.action.ErrorAction;
 import com.ticodev.model.dao.BlogBoardDao;
 import com.ticodev.model.dto.BlogBoard;
 import com.ticodev.util.CookieAdder;
@@ -20,13 +21,13 @@ public class PostAction extends BlogUrlPreprocessor {
         try {
             num = Integer.parseInt(request.getParameter("num"));
         } catch (NumberFormatException e) {
-            return getErrorActionForward(request);
+            return ErrorAction.forward(request);
         }
 
         BlogBoardDao dao = new BlogBoardDao();
         BlogBoard board = dao.selectBoardByNum(num);
         if (board == null || board.isBbIsDelete()) {
-            return getErrorActionForward(request, "서버 에러 발생");
+            return ErrorAction.forward(request, "서버 에러 발생");
         }
 
         if (!CookieChecker.hasBoardCookie(request, board.getBbNum())) {

@@ -1,6 +1,7 @@
 package com.ticodev.action.blog;
 
 import com.ticodev.action.ActionForward;
+import com.ticodev.action.ErrorAction;
 import com.ticodev.model.dao.BlogBoardDao;
 import com.ticodev.model.dto.BlogBoard;
 
@@ -15,20 +16,20 @@ public class UpdateFormAction extends BlogUrlPreprocessor {
             throws Exception {
 
         if (!isBlogger) {
-            return getErrorActionForward(request);
+            return ErrorAction.forward(request);
         }
 
         int num;
         try {
             num = Integer.parseInt(request.getParameter("num"));
         } catch (NumberFormatException e) {
-            return getErrorActionForward(request);
+            return ErrorAction.forward(request);
         }
 
         BlogBoardDao dao = new BlogBoardDao();
         BlogBoard board = dao.selectBoardByNum(num);
         if (board == null || board.isBbIsDelete()) {
-            return getErrorActionForward(request, "삭제된 게시글입니다.");
+            return ErrorAction.forward(request, "삭제된 게시글입니다.");
         }
 
         request.setAttribute("board", board);

@@ -1,6 +1,5 @@
 package com.ticodev.action.blog;
 
-import com.oreilly.servlet.MultipartRequest;
 import com.ticodev.action.ActionForward;
 import com.ticodev.model.dao.BlogBoardDao;
 import com.ticodev.model.dao.BlogCategoryDao;
@@ -9,8 +8,6 @@ import com.ticodev.model.dto.BlogCategorySetting;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 public class ListAction extends BlogUrlPreprocessor {
