@@ -84,7 +84,7 @@ public abstract class BlogUrlPreprocessor implements Action {
     }
 
     // 다른 url 변경 없이 반환할 때 사용
-    public ActionForward getActionForward() {
+    protected ActionForward getActionForward() {
         return new ActionForward(false, url);
     }
 
