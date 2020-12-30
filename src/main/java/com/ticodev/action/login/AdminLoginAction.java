@@ -2,6 +2,7 @@ package com.ticodev.action.login;
 
 import com.ticodev.action.Action;
 import com.ticodev.action.ActionForward;
+import com.ticodev.action.AlertAction;
 import com.ticodev.model.dao.MemberDao;
 import com.ticodev.model.dto.Member;
 
@@ -22,18 +23,14 @@ public abstract class AdminLoginAction implements Action {
 
         /* 로그아웃 상태 */
         if (sessionId == null) {
-            request.setAttribute("msg", "로그인 후 이용해주세요");
-            request.setAttribute("url", "../admin/login_form.do");
-            return new ActionForward(false, "/alert.jsp");
+            return AlertAction.forward(request, "로그인 후 이용해주세요", "../admin/login_form.do");
         }
 
         Member member = dao.selectMemberById(sessionId);
 
         /* 관리자가 아닌 경우 */
         if (!member.isMbIsAdmin()) {
-            request.setAttribute("msg", "접근 불가");
-            request.setAttribute("url", "../main/index.do");
-            return new ActionForward(false, "/alert.jsp");
+            return AlertAction.forward(request, "접근 불가", "../main/index.do");
         }
 
         return doExecute(request, response);

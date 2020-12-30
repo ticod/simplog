@@ -2,6 +2,7 @@ package com.ticodev.action.main;
 
 import com.ticodev.action.Action;
 import com.ticodev.action.ActionForward;
+import com.ticodev.action.AlertAction;
 import com.ticodev.model.dao.MemberDao;
 import com.ticodev.model.dto.Member;
 import com.ticodev.util.HashEncoder;
@@ -37,7 +38,7 @@ public class SignupAction implements Action {
         request.setAttribute("msg", msg);
         request.setAttribute("url", url);
 
-        return new ActionForward(false, "/alert.jsp");
+        return AlertAction.forward();
     }
 
 }

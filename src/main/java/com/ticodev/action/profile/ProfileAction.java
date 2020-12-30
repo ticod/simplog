@@ -2,6 +2,7 @@ package com.ticodev.action.profile;
 
 import com.ticodev.action.Action;
 import com.ticodev.action.ActionForward;
+import com.ticodev.action.AlertAction;
 import com.ticodev.model.dao.MemberDao;
 import com.ticodev.model.dto.Member;
 import com.ticodev.util.HashEncoder;
@@ -41,6 +42,6 @@ public class ProfileAction implements Action {
             request.setAttribute("url", "../main/password_check.do");
         }
 
-        return new ActionForward(false, "/alert.jsp");
+        return AlertAction.forward();
     }
 }

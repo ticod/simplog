@@ -1,7 +1,7 @@
 package com.ticodev.action.blog;
 
 import com.ticodev.action.ActionForward;
-import com.ticodev.action.ErrorAction;
+import com.ticodev.action.AlertAction;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +14,7 @@ public class BloggerCheckAction extends BlogUrlPreprocessor {
             throws Exception {
 
         if (!isBlogger) {
-            return ErrorAction.forward(request);
+            return AlertAction.forward(request);
         }
 
         return getActionForward();

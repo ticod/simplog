@@ -2,7 +2,7 @@ package com.ticodev.action.blog;
 
 import com.ticodev.action.Action;
 import com.ticodev.action.ActionForward;
-import com.ticodev.action.ErrorAction;
+import com.ticodev.action.AlertAction;
 import com.ticodev.model.dao.BlogCategoryDao;
 import com.ticodev.model.dao.BlogDao;
 import com.ticodev.model.dao.MemberDao;
@@ -44,7 +44,7 @@ public abstract class BlogUrlPreprocessor implements Action {
         BlogDao blogDao = new BlogDao();
         blog = blogDao.selectBlogByUrl(blogUrl);
         if (blog == null) {
-            return ErrorAction.forward(request);
+            return AlertAction.forward(request);
         }
 
         // 현재 로그인한 사람의 블로거 여부
