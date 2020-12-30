@@ -44,6 +44,7 @@
 
     <c:if test="${boardCount > 0}">
         <c:forEach items="${boards}" var="board">
+
             <div class="align-self-center row border w-100" style="height: 3rem; font-size:1.3rem">
                 <div class="col-md-2 d-none border
                 d-md-flex justify-content-center align-items-center">
@@ -67,6 +68,7 @@
                 </div>
             </div>
             <c:set var="boardNum" value="${boardNum - 1}" />
+
         </c:forEach>
     </c:if>
 
